@@ -1,0 +1,4 @@
+a) //Personal/*/*[@Station="Rehabilitation"]
+b) //Stationen/Station[contains(Standort,"Seestrasse") and count(Bett)>2]
+c) 
+
