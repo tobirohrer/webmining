@@ -29,12 +29,12 @@ Diese Aufgabe wurde im Juypter Notebook “p1_regulaere_ausdrucke” bearbeitet.
 
 ## Teil 2
 1. Klinik.xml:
-    * a.)
-    * b.)
-    * c.)
-    * d.)
+    * a.) //Personal/*/Pfleger[@Station=“Rehabilitation”]/child::Name
+    * b.) //Stationen/Station[contains(Standort,"Seestrasse") and count(Bett)>2]
+    * c.) //Pfleger[@ID=/Klinik/Stationen/Station/@Leitung]/Name/Nachname
+    * d.) //Personal/angestelltes_Personal/*/Adresse[Stadt='Berlin']/preceding-sibling::Name
 2. Hamlet.xml:
-    * a.)
+    * a.) //SCENE[count(SPEECH) < 10]/TITLE
     * b.)
     * c.)
 3. XPath Ausdrücke für unser Text-Mining Projekt:   
