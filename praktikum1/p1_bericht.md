@@ -29,14 +29,22 @@ Diese Aufgabe wurde im Juypter Notebook “p1_regulaere_ausdrucke” bearbeitet.
 
 ## Teil 2
 1. Klinik.xml:
-    * a.) //Personal/*/Pfleger[@Station=“Rehabilitation”]/child::Name
-    * b.) //Stationen/Station[contains(Standort,"Seestrasse") and count(Bett)>2]
-    * c.) //Pfleger[@ID=/Klinik/Stationen/Station/@Leitung]/Name/Nachname
-    * d.) //Personal/angestelltes_Personal/*/Adresse[Stadt='Berlin']/preceding-sibling::Name
+    * a.) ```//Personal/*/Pfleger[@Station=“Rehabilitation”]/child::Name```
+    * b.) ```//Stationen/Station[contains(Standort,"Seestrasse") and count(Bett)>2]```
+    * c.) ```//Pfleger[@ID=/Klinik/Stationen/Station/@Leitung]/Name/Nachname```
+    * d.) ```//Personal/angestelltes_Personal/*/Adresse[Stadt='Berlin']/preceding-sibling::Name```
 2. Hamlet.xml:
-    * a.) //SCENE[count(SPEECH) < 10]/TITLE
-    * b.)
-    * c.)
+    * a.) ```//SCENE[count(SPEECH) < 10]/TITLE```
+    * b.) ```//ACT/SCENE/SPEECH/LINE/text()[contains(.,"Part them; they are incensed.")]/../../preceding-sibling::STAGEDIR[position() = count(//ACT/SCENE/SPEECH/LINE/text()[contains(.,"Part them; they are incensed.")])]```
+    * c.) ```//ACT//SPEECH[position() = 2]/SPEAKER/text()```   
+        * Dieser Ausdruck wählt das zweite SPEECH Elemente des Elternknotens aus.
+    ```//ACT//SPEECH[position() = 187]/SPEAKER/text()```
+        * Dieser Ausdruck wählt das 187. SPEECH Element des Elternknotens aus (In der Hamlet.xml Datei liefert dieser Befehl keine Ausgabe.).
+    ```//ACT/descendant::SPEECH[position() = 2]/SPEAKER/text()```  
+        * Dieser Ausdruck wählt das zweite SPEECH Element vom ACT Element aus.
+    ```//ACT/descendant::SPEECH[position() = 187]/SPEAKER/text()```
+        * Dieser Ausdruck wählt das 187. SPEECH Element vom ACT Element aus.
+
 3. XPath Ausdrücke für unser Text-Mining Projekt:   
     * Hier kommen unsere Ausdrücke hin.
 
