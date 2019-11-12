@@ -1,4 +1,20 @@
-a) //Personal/*/*[@Station="Rehabilitation"]
+Teil 2
+
+1.
+a) //Personal/*/Pfleger[@Station=“Rehabilitation”]/child::Name
+//Personal/*/*[@Station="Rehabilitation"]
 b) //Stationen/Station[contains(Standort,"Seestrasse") and count(Bett)>2]
-c) 
+c) //Pfleger[@ID=/Klinik/Stationen/Station/@Leitung]/Name/Nachname
+d) //Personal/angestelltes_Personal/*/Adresse[Stadt='Berlin']/preceding-sibling::Name
+
+2.
+a) //SCENE[count(SPEECH) < 10]/TITLE
+b) //ACT/SCENE/SPEECH/LINE/text()[contains(.,"Part them; they are incensed.")]/../../preceding-sibling::STAGEDIR[position() = count(//ACT/SCENE/SPEECH/LINE/text()[contains(.,"Part them; they are incensed.")])]
+c)
+//ACT//SPEECH[position() = 2]/SPEAKER/text()
+//ACT//SPEECH[position() = 187]/SPEAKER/text()
+//ACT/descendant::SPEECH[position() = 2]/SPEAKER/text()
+//ACT/descendant::SPEECH[position() = 187]/SPEAKER/text()
+
+
 
