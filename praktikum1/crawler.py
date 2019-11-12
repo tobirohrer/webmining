@@ -3,8 +3,8 @@ from scrapy.linkextractors import LinkExtractor
 from scrapy.crawler import CrawlerProcess
 
 
-class HeiseSpider(scrapy.Spider):
-    name = 'heise_spider'
+class T3nSpider(scrapy.Spider):
+    name = 't3n_spider'
     allowed_domains = ['t3n.de']
     start_urls = ['https://t3n.de/news']
 
@@ -14,10 +14,11 @@ class HeiseSpider(scrapy.Spider):
 
         for link in links:
             absolute_next_page_url = response.urljoin(link.url)
+            yield {'from': response.url, 'url': link.url, 'text': link.text.strip()}
             yield scrapy.Request(absolute_next_page_url)
 
-        headings = response.xpath("//h2[@class='u-gap-medium u-text-extralarge']").extract()
-        yield {'headings': headings}
+        heading = response.xpath("//h2[@class='u-gap-medium u-text-extralarge']/text()").extract()
+        yield {'heading': heading, 'url': response.url}
 
 
 def run_crawler(name):
@@ -29,8 +30,8 @@ def run_crawler(name):
         'ROBOTSTXT_OBEY': True,
         'HTTPCACHE_ENABLED': True
     })
-    c.crawl(HeiseSpider)
+    c.crawl(T3nSpider)
     c.start()  # the script will block here until the crawling is finished
 
 
-run_crawler('HeiseSpider')
+run_crawler('t3nspider')
