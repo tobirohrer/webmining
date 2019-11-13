@@ -38,7 +38,7 @@ class T3nDataSpider(scrapy.Spider):
 
 def run_crawler(spider):
     c = CrawlerProcess({
-        'CLOSESPIDER_PAGECOUNT': 50,
+        'CLOSESPIDER_PAGECOUNT': 500,
         'USER_AGENT': 'HochschuleDarmstadt-TextWebMining',
         'FEED_FORMAT': 'csv',
         'FEED_URI': spider.name + '.csv',
