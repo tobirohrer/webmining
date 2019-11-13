@@ -26,7 +26,10 @@ class T3nDataSpider(scrapy.Spider):
     def parse(self, response):
 
         heading = response.xpath("//h2[@class='u-gap-medium u-text-extralarge']/text()").extract()
-        yield {'heading': heading, 'url': response.url}
+        heading = response.xpath("//h2[@class='u-gap-medium u-text-extralarge']/text()").extract()
+        teaser = response.xpath("//p[@class='u-text-teaser']/text()").extract()     
+        text = response.xpath("//p[@class='u-text-teaser']/following-sibling::p/text()").extract()
+        yield {'heading': heading, 'teaser': teaser, 'text': text, 'url': response.url}
 
         extractor = LinkExtractor(allow='news', allow_domains=self.allowed_domains)
         links = extractor.extract_links(response)
