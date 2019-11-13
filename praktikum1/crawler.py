@@ -9,7 +9,7 @@ class T3nUrlSpider(scrapy.Spider):
     start_urls = ['https://t3n.de/news']
 
     def parse(self, response):
-        extractor = LinkExtractor(allow='news', allow_domains=self.allowed_domains)
+        extractor = LinkExtractor()
         links = extractor.extract_links(response)
 
         for link in links:
@@ -50,4 +50,4 @@ def run_crawler(spider):
     c.start()  # the script will block here until the crawling is finished
     
 
-run_crawler(T3nDataSpider)
+run_crawler(T3nUrlSpider)
