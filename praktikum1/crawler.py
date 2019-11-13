@@ -25,7 +25,7 @@ class T3nDataSpider(scrapy.Spider):
 
     def parse(self, response):
 
-        heading = response.xpath("//h2[@class='u-gap-medium u-text-extralarge']/text()").extract()
+        category = response.xpath("//h2[@class='u-gap-medium u-text-extralarge']/text()").extract()
         heading = response.xpath("//h2[@class='u-gap-medium u-text-extralarge']/text()").extract()
         teaser = response.xpath("//p[@class='u-text-teaser']/text()").extract()     
         text = response.xpath("//p[@class='u-text-teaser']/following-sibling::p/text()").extract()
