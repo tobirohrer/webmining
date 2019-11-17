@@ -175,9 +175,11 @@ Die Summe aller gleichen Verlinkungen nach dem trimmen, wurde als Gewichtung ein
 ``` 
 graph = graph.groupby(['to', 'from']).size().reset_index(name='weight')```
 
-Zu guter Letzt wird der DataFrame dann noch in eine Graph-Datenstruktur überführt. In unserem Beispiel unten überführen wir nur alle Verlinkungen, die mehr als 10 mal auftreten.
+Zu guter Letzt wird der DataFrame dann noch in eine Graph-Datenstruktur überführt. In unserem Beispiel unten überführen wir nur alle Verlinkungen, die mehr als 10 mal auftreten. Zur Unterstützung haben wir die Python Bibliothek `networkx` verwendet.
 
 ```
+import networkx as nx
+...
 G = nx.DiGraph()
 for index, row in graph.iterrows():
     if(row['weight'] > 10): #Optional
