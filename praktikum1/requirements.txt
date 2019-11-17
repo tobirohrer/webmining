@@ -6,3 +6,5 @@ seaborn
 numpy
 scipy
 matplotlib
+networkx
+tldextract
