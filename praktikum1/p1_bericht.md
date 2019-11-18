@@ -1,20 +1,13 @@
 # Praktikum 1: Janik Tinz, Patrick Tinz, Tobias Rohrer (Gruppe X-D)
 
 ## Allgemein
-* Link zum GitHub Repo: https://github.com/tobirohrer/webmining 
+* Link zum GitHub Repo: [https://github.com/tobirohrer/webmining](https://github.com/tobirohrer/webmining)
 
 ## Vorbereitung 
-### heise Webseite:
-* Format von seiteninternen URL:
-https://www.heise.de/newsticker/meldung/<titel_des_artikels>.html
 
-* DOM-Baum relevante Informationen:
-
-* Beispiel (HTML-Auszug):
-URL: https://www.heise.de/newsticker/meldung/Wie-Geheimdienste-Cyberattacken-durchfuehren-4582214.html (Zugegriffen am 11.11.2019)
+In der ersten Phase hat sich herausgestellt, dass die Website von [t3n.de](t3n.de) ausreichend Inhalte sowie Links zum Crawlen beinhaltet. Deshalb haben wir uns im ersten Praktikum ausschließlich auf [t3n.de](t3n.de) fokusiert.
 
 
-### t3n:
 * Format von seiteninternen URL:
 https://t3n.de/news/<titel_des_artikels>
 
@@ -26,7 +19,7 @@ https://t3n.de/news/<titel_des_artikels>
 URL: https://t3n.de/news/starlink-spacex-60-satelliten-1219838/ (Zugegriffen am 11.11.2019)
 
 ## Teil 1
-Diese Aufgabe wurde im Juypter Notebook “p1_regulaere_ausdrucke” bearbeitet. 
+Diese Aufgabe wurde im Juypter Notebook [p1\_regulaere\_ausdrucke](https://github.com/tobirohrer/webmining/blob/master/praktikum1/p1_regulaere_ausdrucke.ipynb) bearbeitet. 
 
 Anmerkung zu Aufgabe 3: Hier haben wir `-.2` zusätzlich in unserer Ergebnismenge enthalten.
 
@@ -48,7 +41,7 @@ Anmerkung zu Aufgabe 3: Hier haben wir `-.2` zusätzlich in unserer Ergebnismeng
     ```//ACT/descendant::SPEECH[position() = 187]/SPEAKER/text()```
         * Dieser Ausdruck wählt das 187. SPEECH Element vom ACT Element aus.
 
-3. XPath Ausdrücke für unser Text-Mining Projekt: 
+3. XPath-Ausdrücke für unser Text-Mining Projekt: 
     * Hier kommen unsere Ausdrücke hin.
 
 ## Teil 3
@@ -79,7 +72,7 @@ class T3nUrlSpider(scrapy.Spider):
 ```
 
 #### T3nDataSpider
-Der T3nDataSpider extrahiert ausschließlich URLs, die auf die `/news` Subdomain ziehlen. Somit wird gesteuert, wie sich der T3nDataSpider "fortbewegt". Die XPath-Ausdrücke für die zu extrahierenden Informationen sind in Teil 2.3 definiert.
+Der T3nDataSpider extrahiert ausschließlich URLs, die auf die `/news` Subdomain zielen. Somit wird gesteuert, wie sich der T3nDataSpider "fortbewegt". Die XPath-Ausdrücke für die zu extrahierenden Informationen sind in Teil 2.3 definiert.
 
 ```
 class T3nDataSpider(scrapy.Spider):
@@ -143,7 +136,7 @@ Es ist zu erkennen, dass die meisten Seiten in Etwa 5 ausgehende Links beinhalte
 
 ![alt text](./plots/outgoing_links_darmstadt_spider.png)
 
-Auf dem Plot für die eingehenden Links pro Seite ist zu erkennen, dass es wenige Seiten mit sehr vielen eingehenden Links, jedoch sehr viele Seiten mit nur einem eingehenden Link gibt. Seiten mit sehr vielen eingehenden Links sind auf jeder Unterseite vorhanden. Zum Beispiel in dem "Oft gesucht" Menü.
+Auf dem Plot für die eingehenden Links pro Seite ist zu erkennen, dass es wenige Seiten mit sehr vielen eingehenden Links, jedoch sehr viele Seiten mit nur einem eingehenden Link gibt. Seiten mit sehr vielen eingehenden Links sind auf jeder Unterseite vorhanden. Zum Beispiel in dem "Oft gesucht" Menü der Navigationsleiste.
 
 ![alt text](./plots/incoming_links_darmstadt_spider.png)
 
@@ -158,7 +151,7 @@ Die Link Analyse wurde in dem Jupyter Notebook  und [link\_analysis\_t3n](https:
 ![alt text](./plots/incoming_links_t3n.png)
 
 #### Zusätzliche Statistiken
-Zunächst sollte geklärt werden, wie viele URLs von T3n auf externe Seiten zeigen. Der nachfolgende Plot zeigt das Verhältnis von t3n zu externen Urls
+Zunächst sollte geklärt werden, wie viele URLs von T3n auf externe Seiten zeigen. Der nachfolgende Plot zeigt das Verhältnis von t3n zu externen URLs. Diese Statistik war die Grundlage für die Erkenntnis, dass t3n neben Content auch ausreichend Links zum Crawlen enthält.
 
 ![alt text](./plots/distribution_internal_external_links_t3n.png)
 
