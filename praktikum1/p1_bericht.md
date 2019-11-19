@@ -12,9 +12,9 @@ In der ersten Phase hat sich herausgestellt, dass die Website von [t3n.de](t3n.d
 https://t3n.de/news/<titel_des_artikels>
 
 * DOM-Baum relevante Informationen:
-    * Kategorie: class="o-list c-breadcrumb", class="u-text-extrasmall u-color-mute u-link-simple"
-    * Überschrift: class="u-gap-medium u-text-extralarge"
-    * Teaser-Text: class=“u-text-teaser”
+    * Kategorie: ```class="o-list c-breadcrumb"```, ```class="u-text-extrasmall u-color-mute u-link-simple"```
+    * Überschrift: ```class="u-gap-medium u-text-extralarge"```
+    * Teaser-Text: ```class=“u-text-teaser”```
     * Text-Inhalt: 
 
 * Beispiel (HTML-Auszug):
@@ -23,7 +23,7 @@ URL: https://t3n.de/news/starlink-spacex-60-satelliten-1219838/ (Zugegriffen am 
 ## Teil 1
 Diese Aufgabe wurde im Juypter Notebook [p1\_regulaere\_ausdrucke](https://github.com/tobirohrer/webmining/blob/master/praktikum1/p1_regulaere_ausdrucke.ipynb) bearbeitet. 
 
-Anmerkung zu Aufgabe 3: Hier haben wir `-.2` zusätzlich in unserer Ergebnismenge enthalten.
+Anmerkung zu Aufgabe 3: Hier haben wir `-.2` zusätzlich in unserer Ergebnismenge aufgenommen.
 
 ## Teil 2
 1. Klinik.xml:
@@ -34,17 +34,21 @@ Anmerkung zu Aufgabe 3: Hier haben wir `-.2` zusätzlich in unserer Ergebnismeng
 2. Hamlet.xml:
     * a.) ```//SCENE[count(SPEECH) < 10]/TITLE```
     * b.) ```//ACT/SCENE/SPEECH/LINE/text()[contains(.,"Part them; they are incensed.")]/../../preceding-sibling::STAGEDIR[position() = count(//ACT/SCENE/SPEECH/LINE/text()[contains(.,"Part them; they are incensed.")])]```
-    * c.) ```//ACT//SPEECH[position() = 2]/SPEAKER/text()```   
-        * Dieser Ausdruck wählt das zweite SPEECH Elemente des Elternknotens aus.
-    ```//ACT//SPEECH[position() = 187]/SPEAKER/text()```
-        * Dieser Ausdruck wählt das 187. SPEECH Element des Elternknotens aus (In der Hamlet.xml Datei liefert dieser Befehl keine Ausgabe.).
-    ```//ACT/descendant::SPEECH[position() = 2]/SPEAKER/text()```  
-        * Dieser Ausdruck wählt das zweite SPEECH Element vom ACT Element aus.
-    ```//ACT/descendant::SPEECH[position() = 187]/SPEAKER/text()```
-        * Dieser Ausdruck wählt das 187. SPEECH Element vom ACT Element aus.
+    * c.) 
+        * ```//ACT//SPEECH[position() = 2]/SPEAKER/text()```   
+        Dieser Ausdruck wählt das zweite SPEECH Elemente des Elternknotens aus.
+        * ```//ACT//SPEECH[position() = 187]/SPEAKER/text()```
+        Dieser Ausdruck wählt das 187. SPEECH Element des Elternknotens aus (In der Hamlet.xml Datei liefert dieser Befehl keine Ausgabe.).   
+        * ```//ACT/descendant::SPEECH[position() = 2]/SPEAKER/text()```  
+        Dieser Ausdruck wählt das zweite SPEECH Element vom ACT Element aus.
+        * ```//ACT/descendant::SPEECH[position() = 187]/SPEAKER/text()```
+        Dieser Ausdruck wählt das 187. SPEECH Element vom ACT Element aus.
 
 3. XPath-Ausdrücke für unser Text-Mining Projekt: 
-    * Hier kommen unsere Ausdrücke hin.
+    * ```//h2[@class='u-gap-medium u-text-extralarge']/text()```
+    * ```//p[@class='u-text-teaser']/text()```
+    * ```//p[@class='u-text-teaser']/following-sibling::p/text()```
+    * ```//ul[@class='o-list c-breadcrumb']/li[position() = 2]/a[@class='u-text-extrasmall u-color-mute u-link-simple']/text()```
 
 ## Teil 3
 
