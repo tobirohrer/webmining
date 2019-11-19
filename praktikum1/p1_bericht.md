@@ -12,8 +12,10 @@ In der ersten Phase hat sich herausgestellt, dass die Website von [t3n.de](t3n.d
 https://t3n.de/news/<titel_des_artikels>
 
 * DOM-Baum relevante Informationen:
-    * Datum und Uhrzeit des Artikels: class=“u-color-mute”  
+    * Kategorie: class="o-list c-breadcrumb", class="u-text-extrasmall u-color-mute u-link-simple"
+    * Überschrift: class="u-gap-medium u-text-extralarge"
     * Teaser-Text: class=“u-text-teaser”
+    * Text-Inhalt: 
 
 * Beispiel (HTML-Auszug):
 URL: https://t3n.de/news/starlink-spacex-60-satelliten-1219838/ (Zugegriffen am 11.11.2019)
@@ -166,7 +168,8 @@ graph['from'] = t3n['from'].map(lambda url:  tldextract.extract(url).domain)
 Die Summe aller gleichen Verlinkungen nach dem trimmen, wurde als Gewichtung einer Kante im Graph abgespeichert.
 
 ``` 
-graph = graph.groupby(['to', 'from']).size().reset_index(name='weight')```
+graph = graph.groupby(['to', 'from']).size().reset_index(name='weight')
+```
 
 Zu guter Letzt wird der DataFrame dann noch in eine Graph-Datenstruktur überführt. In unserem Beispiel unten überführen wir nur alle Verlinkungen, die mehr als 10 mal auftreten. Zur Unterstützung haben wir die Python Bibliothek `networkx` verwendet.
 
