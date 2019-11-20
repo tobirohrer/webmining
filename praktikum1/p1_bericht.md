@@ -23,15 +23,19 @@ URL: https://t3n.de/news/starlink-spacex-60-satelliten-1219838/ (Zugegriffen am 
 ## Teil 1
 Diese Aufgabe wurde im Juypter Notebook [p1\_regulaere\_ausdrucke](https://github.com/tobirohrer/webmining/blob/master/praktikum1/p1_regulaere_ausdrucke.ipynb) bearbeitet. 
 
-Anmerkung zu Übung 3: Hier haben wir `-.2` zusätzlich in unserer Ergebnismenge aufgenommen.
+Anmerkung zu Übung 3: Hier haben wir `-.2` zusätzlich in unserer Ergebnismenge aufgenommen.   
 Anmerkung zu Übung 5: Hier haben wir zwei Reguläre Ausdrücke gefunden. Der erste RegEx extrahiert nur neunstellige Postleitzahlen. Der zweite RegEx extrahiert  fünf- oder neunstellige Postleitzahlen.
 
 ## Teil 2
 1. Klinik.xml:
-    * a.) ```//Personal/*/Pfleger[@Station=“Rehabilitation”]/child::Name```
-    * b.) ```//Stationen/Station[contains(Standort,"Seestrasse") and count(Bett)>2]```
-    * c.) ```//Pfleger[@ID=/Klinik/Stationen/Station/@Leitung]/Name/Nachname```
-    * d.) ```//Personal/angestelltes_Personal/*/Adresse[Stadt='Berlin']/preceding-sibling::Name```
+    * a.) ```//Pfleger[@Station='Rehabilitation']/Name/*/text()```   
+    Es werden alle untergeordneten Knoten von Pfleger sowie der Knoten Pfleger selektiert. Die Selektierung des Pfleger Knotens wird mithilfe eines Prädikats weiter eingeschränkt. Die Einschränkung erfolgt über das Attribut ```@Station='Rehabilitation' ```. Anschließend werden über den Unterknoten ```Name``` der Vorname und der Nachname selektiert. 
+    * b.) ```//Stationen/Station[contains(Standort,'Seestrasse') and count(Bett)>2]/Name/text()```   
+    Es werden alle untergeordneten Knoten von Stationen sowie der Knoten Stationen selektiert. Im nächsten Schritt werden über den Knoten Station mithilfe des Prädikats ```contains(Standort,'Seestrasse') and count(Bett)>2``` alle Stationen in der Seestraße, die mehr als zwei Betten haben selektiert. Abschließend wird über den Knoten ```Name``` der Name ausgewählt.
+    * c.) ```//Pfleger[@ID=/Klinik/Stationen/Station/@Leitung]/Name/Nachname/text()```   
+    Zunächst werden alle untergeordneten Knoten von Pfleger sowie der Knoten Pfleger selektiert. Als nächstes werden mithilfe des Prädikats ```@ID=/Klinik/Stationen/Station/@Leitung``` alle Pfleger selektiert, die eine Station leiten. Anschließend wird der Nachname der leitenden Pfleger ermittelt.
+    * d.) ```//angestelltes_Personal/*/Adresse[Stadt='Berlin']/preceding-sibling::Name/*/text()```   
+    Als erstes werden alle untergeordneten Knoten von angestelltes_Personal sowie der Knoten angestelltes_Personal selektiert. Im nächsten Schritt wird über den Knoten ```Adresse``` ermittelt, welche Mitarbeiter in Berlin wohnen.
 2. Hamlet.xml:
     * a.) ```//SCENE[count(SPEECH) < 10]/TITLE```
     * b.) ```//ACT/SCENE/SPEECH/LINE/text()[contains(.,"Part them; they are incensed.")]/../../preceding-sibling::STAGEDIR[position() = count(//ACT/SCENE/SPEECH/LINE/text()[contains(.,"Part them; they are incensed.")])]```
