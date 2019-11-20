@@ -126,7 +126,7 @@ Die Abbruchbedingung unserer Spider wurde zunächst auf einen Pagecount von jewe
 ```
 
 ### 3.2 Link Analyse DarmstadtSpider
-Die Link Analyse wurde in dem Jupyter Notebook [link\_analysis\_DarmstadtSpider](https://github.com/tobirohrer/webmining/blob/master/praktikum1/link_analyses_DarmstadtSpider.ipynb) realisiert.
+Die Link Analyse wurde in dem Jupyter Notebook [link\_analysis\_DarmstadtSpider](https://github.com/tobirohrer/webmining/blob/master/praktikum1/link_analysis_DarmstadtSpider.ipynb) realisiert.
 
 #### Data Preprocessing
 
@@ -164,7 +164,7 @@ Auf dem Plot für die eingehenden Links pro Seite ist zu erkennen, dass es wenig
 Die Link Analyse wurde in dem Jupyter Notebook  und [link\_analysis\_t3n](https://github.com/tobirohrer/webmining/blob/master/praktikum1/link_analysis_t3n.ipynb) realisiert.
 
 #### Statistiken aus 3.2 für t3n
-Auf den nachfolgenden Plots ist zu erkennen, dass die Seiten auf [t3n/news](t3n.de/news) generell mehr eingehende sowie ausgehende Links, als   die Seiten auf [https://www.darmstadt.de/leben-in-darmstadt](https://www.darmstadt.de/leben-in-darmstadt) enthalten.
+Auf den nachfolgenden Plots ist zu erkennen, dass die Seiten auf [t3n/news](https://t3n.de/news/) generell mehr eingehende sowie ausgehende Links, als   die Seiten auf [https://www.darmstadt.de/leben-in-darmstadt](https://www.darmstadt.de/leben-in-darmstadt) enthalten.
 
 ![alt text](./plots/tld_t3n.png)
 ![alt text](./plots/outgoing_links_t3n.png)
