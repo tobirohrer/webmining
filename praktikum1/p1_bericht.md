@@ -53,10 +53,14 @@ them; they are incensed.".
         Dieser Ausdruck wählt das 187. SPEECH Element vom ACT Element aus.
 
 3. XPath-Ausdrücke für unser Text-Mining Projekt: 
-    * ```//h2[@class='u-gap-medium u-text-extralarge']/text()```
-    * ```//p[@class='u-text-teaser']/text()```
-    * ```//p[@class='u-text-teaser']/following-sibling::p/text()```
-    * ```//ul[@class='o-list c-breadcrumb']/li[position() = 2]/a[@class='u-text-extrasmall u-color-mute u-link-simple']/text()```
+    * Überschrift: ```//h2[@class='u-gap-medium u-text-extralarge']/text()```   
+    Die Überschrift eines Artikels ist immer mit der Klasse ```'u-gap-medium u-text-extralarge'``` gekennzeichnet.
+    * Teaser: ```//p[@class='u-text-teaser']/text()```   
+    Der Teaser eines Artikels ist immer mit der Klasse ```'u-text-teaser'``` gekennzeichnet. 
+    * Text: ```//p[@class='u-text-teaser']/following-sibling::p//text()```   
+    Der Inhalt eines Artikels steht in einem p-Tag mit der Klasse ```'u-text-teaser'```.
+    * Kategorie: ```//ul[@class='o-list c-breadcrumb']/li[position() = 2]/a[@class='u-text-extrasmall u-color-mute u-link-simple']/text()```   
+    Die Kategorie eines Artikels steht in einem Unterknoten des ul-Tag mit der Klasse ```'o-list c-breadcrumb'```. Die Unterknoten sind li-Tags, wobei sich die Kategorie im zweiten li-Tag befindet.
 
 ## Teil 3
 
