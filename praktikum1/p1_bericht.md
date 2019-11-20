@@ -183,7 +183,7 @@ graph['to'] = t3n.url.map(lambda url:  tldextract.extract(url).domain)
 graph['from'] = t3n['from'].map(lambda url:  tldextract.extract(url).domain)
 ```
 
-Die Summe aller gleichen Verlinkungen nach dem trimmen, wurde als Gewichtung einer Kante im Graph abgespeichert.
+Die Summe aller gleichen Verlinkungen nach dem trimmen wurde als Gewichtung einer Kante im Graph abgespeichert.
 
 ``` 
 graph = graph.groupby(['to', 'from']).size().reset_index(name='weight')
