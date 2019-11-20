@@ -5,23 +5,23 @@
 
 ## Vorbereitung 
 
-In der ersten Phase hat sich herausgestellt, dass die Website von [t3n.de](t3n.de) ausreichend Inhalte sowie Links zum Crawlen beinhaltet. Deshalb haben wir uns im ersten Praktikum ausschließlich auf [t3n.de](t3n.de) fokussiert.
+In der ersten Phase hat sich herausgestellt, dass die Website von [t3n.de](https://t3n.de) ausreichend Inhalte sowie Links zum Crawlen beinhaltet. Deshalb haben wir uns im ersten Praktikum ausschließlich auf [t3n.de](https://t3n.de) fokussiert.
 
 
 * Format von seiteninternen URLs:
 https://t3n.de/news/<titel_des_artikels>
 
 * Relevante Informationen des DOM-Baums:
-    * Kategorie: `class="o-list c-breadcrumb"`, `class="u-text-extrasmall u-color-mute u-link-simple"`
-    * Überschrift: `class="u-gap-medium u-text-extralarge"`
-    * Teaser-Text: `class=“u-text-teaser”`
-    * Text-Inhalt: `class="c-entry"`
+    * Kategorie des Artikels: `class="o-list c-breadcrumb"`, `class="u-text-extrasmall u-color-mute u-link-simple"`
+    * Überschrift des Artikels: `class="u-gap-medium u-text-extralarge"`
+    * Teaser-Text des Artikels: `class="u-text-teaser"`
+    * Text-Inhalt des Artikels: `class="c-entry"`
 
 * Beispiel (HTML-Auszug):
 URL: https://t3n.de/news/starlink-spacex-60-satelliten-1219838/ (Zugegriffen am 11.11.2019)
 
 ## Teil 1
-Diese Aufgabe wurde im Juypter Notebook [p1\_regulaere\_ausdrucke](https://github.com/tobirohrer/webmining/blob/master/praktikum1/p1_regulaere_ausdrucke.ipynb) bearbeitet. 
+Diese Aufgabe wurde im Juypter Notebook [p1\_regulaere\_ausdrucke](https://github.com/tobirohrer/webmining/blob/master/praktikum1/p1_regulaere_ausdruecke.ipynb) bearbeitet. 
 
 Anmerkung zu Übung 3: Hier haben wir `-.2` zusätzlich in unsere Ergebnismenge aufgenommen.   
 Anmerkung zu Übung 5: Hier haben wir zwei Reguläre Ausdrücke gefunden. Der erste RegEx extrahiert nur neunstellige Postleitzahlen. Der zweite RegEx extrahiert  fünf- oder neunstellige Postleitzahlen.
@@ -33,9 +33,9 @@ Anmerkung zu Übung 5: Hier haben wir zwei Reguläre Ausdrücke gefunden. Der er
     * b.) `//Stationen/Station[contains(Standort,'Seestrasse') and count(Bett)>2]/Name/text()`   
     Es werden alle untergeordneten Knoten von Stationen sowie der Knoten Stationen selektiert. Im nächsten Schritt werden über den Knoten Station mithilfe des Prädikats `contains(Standort,'Seestrasse') and count(Bett)>2` alle Stationen in der Seestraße, die mehr als zwei Betten haben selektiert. Abschließend wird über den Knoten `Name` der Name ausgewählt.
     * c.) `//Pfleger[@ID=/Klinik/Stationen/Station/@Leitung]/Name/Nachname/text()`   
-    Zunächst werden alle untergeordneten Knoten von Pfleger sowie der Knoten Pfleger selektiert. Als nächstes werden mithilfe des Prädikats `@ID=/Klinik/Stationen/Station/@Leitung` alle Pfleger selektiert, die eine Station leiten. Anschließend wird der Nachname der leitenden Pfleger ermittelt.
+    Zunächst werden alle untergeordneten Knoten von Pfleger sowie der Knoten Pfleger selektiert. Als nächstes werden mithilfe des Prädikats `@ID=/Klinik/Stationen/Station/@Leitung` alle Pfleger ausgewählt, die eine Station leiten. Anschließend wird der Nachname der leitenden Pfleger ermittelt.
     * d.) `//angestelltes_Personal/*/Adresse[Stadt='Berlin']/preceding-sibling::Name/*/text()`   
-    Als erstes werden alle untergeordneten Knoten von angestelltes_Personal sowie der Knoten angestelltes_Personal selektiert. Im nächsten Schritt wird über den Knoten `Adresse` ermittelt, welche Mitarbeiter in Berlin wohnen.
+    Als erstes werden alle untergeordneten Knoten von `angestelltes_Personal` sowie der Knoten `angestelltes_Personal` selektiert. Im nächsten Schritt wird über den Knoten `Adresse` ermittelt, welche Mitarbeiter in Berlin wohnen.
 2. Hamlet.xml:
     * a.) `//SCENE[count(SPEECH) < 10]/TITLE/text()`
     Zunächst werden alle untergeordneten Knoten von SCENE sowie der Knoten SCENE selektiert. Anschließend werden über das Prädikat `count(SPEECH) < 10` alle Titel, die weniger als zehn Sprechakte haben, ermittelt.
@@ -60,16 +60,16 @@ them; they are incensed.".
     * Text: `//p[@class='u-text-teaser']/following-sibling::p//text()`   
     Der Inhalt eines Artikels steht in einem p-Tag mit der Klasse `'u-text-teaser'`.
     * Kategorie: `//ul[@class='o-list c-breadcrumb']/li[position() = 2]/a[@class='u-text-extrasmall u-color-mute u-link-simple']/text()`   
-    Die Kategorie eines Artikels steht in einem Unterknoten des ul-Tag mit der Klasse `'o-list c-breadcrumb'`. Die Unterknoten sind li-Tags, wobei sich die Kategorie im zweiten li-Tag befindet. In diesem li-Tag steht die Kategorie in einem a-Tag. Die Kategorie kann schließlich über die Klasse `'u-text-extrasmall u-color-mute u-link-simple'` ermittelt werden.
+    Die Kategorie eines Artikels steht in einem Unterknoten des ul-Tags mit der Klasse `'o-list c-breadcrumb'`. Die Unterknoten sind li-Tags, wobei sich die Kategorie im zweiten li-Tag befindet. In diesem li-Tag steht die Kategorie in einem a-Tag. Die Kategorie kann schließlich über die Klasse `'u-text-extrasmall u-color-mute u-link-simple'` ermittelt werden.
 
 ## Teil 3
 
 ### 3.1 Implementierung Scrapy Crawler
 
-Wir haben uns bei der Implementierung unserer Crawler für Link- und Content-Extraction zunächst auf die URL [https://t3n.de/news]() konzentriert. Dafür wurden die zwei Klassen `T3nUrlSpider` und `T3nDataSpider` implementiert.
+Wir haben uns bei der Implementierung unserer Crawler für Link- und Content-Extraction zunächst auf die URL [https://t3n.de/news](https://t3n.de/news) konzentriert. Dafür wurden die zwei Klassen `T3nUrlSpider` und `T3nDataSpider` implementiert.
 
 #### T3nUrlSpider
-Der T3nUrlSpider wurde so konfiguriert, dass er sich ausschließlich auf [t3n.de](t3n.de) bewegt, jedoch ausgehende URLs zu jeder beliebigen Seite extrahiert.
+Der T3nUrlSpider wurde so konfiguriert, dass er sich ausschließlich auf [t3n.de](https://t3n.de) bewegt, jedoch ausgehende URLs zu jeder beliebigen Seite extrahiert.
 
 ```
 class T3nUrlSpider(scrapy.Spider):
@@ -116,11 +116,11 @@ class T3nDataSpider(scrapy.Spider):
             yield scrapy.Request(absolute_next_page_url)
 ```
 
-Die Abbruchbedingung unserer Spider wurde zunächst auf einen Pagecount von jeweils 500 Seiten definiert. Hierfür musste im CrawlerProcess die folgende Eigenschaft gesetzt werden:
+Die Abbruchbedingung unserer Spider wurde zunächst auf einen Pagecount von jeweils 50 Seiten definiert. Hierfür musste im CrawlerProcess die folgende Eigenschaft gesetzt werden:
 
 ```
     c = CrawlerProcess({
-        'CLOSESPIDER_PAGECOUNT': 500,
+        'CLOSESPIDER_PAGECOUNT': 50,
         ...
     })
 ```
@@ -130,14 +130,14 @@ Die Link Analyse wurde in dem Jupyter Notebook [link\_analysis\_DarmstadtSpider]
 
 #### Data Preprocessing
 
-Um mit den Auswertungen starten zu können, mussten zunächst die Daten bereinigt werden. Viele URLs wurden mehrfach mit unterschiedlichen URL-Parametern für die Darstellung verlinkt. Für unsere Auswertung mussten diese aus dem Datensatz entfernt werden. Mit einer Einfachen Abfrage konnte dies realisiert werden.
+Um mit den Auswertungen starten zu können, mussten zunächst die Daten bereinigt werden. Viele URLs wurden mehrfach mit unterschiedlichen URL-Parametern für die Darstellung verlinkt. Für unsere Auswertung mussten diese aus dem Datensatz entfernt werden. Mit einer einfachen Abfrage konnte dies realisiert werden.
 
 ```
 df = df.loc[~df['from'].str.contains('(\?|\&)(tx_contrast|type=97)')]
 ```
 
 #### Top-Level Domain Statisitk
-Zunächst wurde den Daten eine Spalte `tld` mit der Zugehörigen Top-Level Domain eingefügt.
+Zunächst wurde den Daten eine Spalte `tld` mit der zugehörigen Top-Level Domain eingefügt.
 
 ```
 df['tld'] = df.url.map(lambda url:  get_tld(url, fail_silently=True))
@@ -150,7 +150,7 @@ Nachdem die Informationen in der Spalte `tld` vorhanden waren, konnte ein `Count
 #### Outgoing / Incoming URL Statistik
 
 Die Statistik über die Anzahl an ausgehenden Links pro Seite sieht für den DarmstadtSpider wie folgt aus.
-Es ist zu erkennen, dass die meisten Seiten in Etwa 15 ausgehende Links beinhalten. Die wenigsten Seiten beinhalten mehr als 20 ausgehende Links.
+Es ist zu erkennen, dass die meisten Seiten in etwa 15 ausgehende Links beinhalten. Die wenigsten Seiten beinhalten mehr als 20 ausgehende Links.
 
 ![alt text](./plots/outgoing_links_darmstadt_spider.png)
 
