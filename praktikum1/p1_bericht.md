@@ -139,11 +139,11 @@ Nachdem die Informationen in der Spalte `tld` vorhanden waren, konnte ein `Count
 #### Outgoing / Incoming URL Statistik
 
 Die Statistik über die Anzahl an ausgehenden Links pro Seite sieht für den DarmstadtSpider wie folgt aus.
-Es ist zu erkennen, dass die meisten Seiten in Etwa 5 ausgehende Links beinhalten. Die wenigsten Seiten beinhalten mehr als 20 ausgehende Links.
+Es ist zu erkennen, dass die meisten Seiten in Etwa 15 ausgehende Links beinhalten. Die wenigsten Seiten beinhalten mehr als 20 ausgehende Links.
 
 ![alt text](./plots/outgoing_links_darmstadt_spider.png)
 
-Auf dem Plot für die eingehenden Links pro Seite ist zu erkennen, dass es wenige Seiten mit sehr vielen eingehenden Links, jedoch sehr viele Seiten mit nur einem eingehenden Link gibt. Seiten mit sehr vielen eingehenden Links sind auf jeder Unterseite vorhanden. Zum Beispiel in dem "Oft gesucht" Menü der Navigationsleiste.
+Auf dem Plot für die eingehenden Links pro Seite ist zu erkennen, dass es wenige Seiten mit 21 eingehenden Links, jedoch sehr viele Seiten mit nur einem eingehenden Link gibt. Seiten mit 21 eingehenden Links sind auf jeder Unterseite verlinkt. Zum Beispiel in dem "Oft gesucht" Menü der Navigationsleiste.
 
 ![alt text](./plots/incoming_links_darmstadt_spider.png)
 
@@ -153,6 +153,8 @@ Auf dem Plot für die eingehenden Links pro Seite ist zu erkennen, dass es wenig
 Die Link Analyse wurde in dem Jupyter Notebook  und [link\_analysis\_t3n](https://github.com/tobirohrer/webmining/blob/master/praktikum1/link_analysis_t3n.ipynb) realisiert.
 
 #### Statistiken aus 3.2 für t3n
+Auf den nachfolgenden Plots ist zu erkennen, dass die Seiten auf [t3n/news](t3n.de/news) generell mehr eingehende sowie ausgehende Links, als   die Seiten auf [https://www.darmstadt.de/leben-in-darmstadt](https://www.darmstadt.de/leben-in-darmstadt) enthalten.
+
 ![alt text](./plots/tld_t3n.png)
 ![alt text](./plots/outgoing_links_t3n.png)
 ![alt text](./plots/incoming_links_t3n.png)
