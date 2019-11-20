@@ -5,17 +5,17 @@
 
 ## Vorbereitung 
 
-In der ersten Phase hat sich herausgestellt, dass die Website von [t3n.de](t3n.de) ausreichend Inhalte sowie Links zum Crawlen beinhaltet. Deshalb haben wir uns im ersten Praktikum ausschließlich auf [t3n.de](t3n.de) fokusiert.
+In der ersten Phase hat sich herausgestellt, dass die Website von [t3n.de](t3n.de) ausreichend Inhalte sowie Links zum Crawlen beinhaltet. Deshalb haben wir uns im ersten Praktikum ausschließlich auf [t3n.de](t3n.de) fokussiert.
 
 
-* Format von seiteninternen URL:
+* Format von seiteninternen URLs:
 https://t3n.de/news/<titel_des_artikels>
 
-* DOM-Baum relevante Informationen:
+* Relevante Informationen des DOM-Baums:
     * Kategorie: ```class="o-list c-breadcrumb"```, ```class="u-text-extrasmall u-color-mute u-link-simple"```
     * Überschrift: ```class="u-gap-medium u-text-extralarge"```
     * Teaser-Text: ```class=“u-text-teaser”```
-    * Text-Inhalt: 
+    * Text-Inhalt: ```class="c-entry"```
 
 * Beispiel (HTML-Auszug):
 URL: https://t3n.de/news/starlink-spacex-60-satelliten-1219838/ (Zugegriffen am 11.11.2019)
@@ -23,7 +23,8 @@ URL: https://t3n.de/news/starlink-spacex-60-satelliten-1219838/ (Zugegriffen am 
 ## Teil 1
 Diese Aufgabe wurde im Juypter Notebook [p1\_regulaere\_ausdrucke](https://github.com/tobirohrer/webmining/blob/master/praktikum1/p1_regulaere_ausdrucke.ipynb) bearbeitet. 
 
-Anmerkung zu Aufgabe 3: Hier haben wir `-.2` zusätzlich in unserer Ergebnismenge aufgenommen.
+Anmerkung zu Übung 3: Hier haben wir `-.2` zusätzlich in unserer Ergebnismenge aufgenommen.
+Anmerkung zu Übung 5: Hier haben wir zwei Reguläre Ausdrücke gefunden. Der erste RegEx extrahiert nur neunstellige Postleitzahlen. Der zweite RegEx extrahiert  fünf- oder neunstellige Postleitzahlen.
 
 ## Teil 2
 1. Klinik.xml:
