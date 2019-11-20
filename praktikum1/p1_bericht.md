@@ -29,7 +29,7 @@ Anmerkung zu Übung 5: Hier haben wir zwei Reguläre Ausdrücke gefunden. Der er
 ## Teil 2
 1. Klinik.xml:
     * a.) ```//Pfleger[@Station='Rehabilitation']/Name/*/text()```   
-    Es werden alle untergeordneten Knoten von Pfleger sowie der Knoten Pfleger selektiert. Die Selektierung des Pfleger Knotens wird mithilfe eines Prädikats weiter eingeschränkt. Die Einschränkung erfolgt über das Attribut ```@Station='Rehabilitation' ```. Anschließend werden über den Unterknoten ```Name``` der Vorname und der Nachname selektiert. 
+    Es werden alle untergeordneten Knoten von Pfleger sowie der Knoten Pfleger selektiert. Die Selektierung des Pfleger Knotens wird mithilfe eines Prädikats weiter eingeschränkt. Die Einschränkung erfolgt über das Attribut ```@Station='Rehabilitation'```. Anschließend werden über den Unterknoten ```Name``` der Vorname und der Nachname selektiert. 
     * b.) ```//Stationen/Station[contains(Standort,'Seestrasse') and count(Bett)>2]/Name/text()```   
     Es werden alle untergeordneten Knoten von Stationen sowie der Knoten Stationen selektiert. Im nächsten Schritt werden über den Knoten Station mithilfe des Prädikats ```contains(Standort,'Seestrasse') and count(Bett)>2``` alle Stationen in der Seestraße, die mehr als zwei Betten haben selektiert. Abschließend wird über den Knoten ```Name``` der Name ausgewählt.
     * c.) ```//Pfleger[@ID=/Klinik/Stationen/Station/@Leitung]/Name/Nachname/text()```   
@@ -37,11 +37,14 @@ Anmerkung zu Übung 5: Hier haben wir zwei Reguläre Ausdrücke gefunden. Der er
     * d.) ```//angestelltes_Personal/*/Adresse[Stadt='Berlin']/preceding-sibling::Name/*/text()```   
     Als erstes werden alle untergeordneten Knoten von angestelltes_Personal sowie der Knoten angestelltes_Personal selektiert. Im nächsten Schritt wird über den Knoten ```Adresse``` ermittelt, welche Mitarbeiter in Berlin wohnen.
 2. Hamlet.xml:
-    * a.) ```//SCENE[count(SPEECH) < 10]/TITLE```
-    * b.) ```//ACT/SCENE/SPEECH/LINE/text()[contains(.,"Part them; they are incensed.")]/../../preceding-sibling::STAGEDIR[position() = count(//ACT/SCENE/SPEECH/LINE/text()[contains(.,"Part them; they are incensed.")])]```
+    * a.) ```//SCENE[count(SPEECH) < 10]/TITLE/text()```
+    Zunächst werden alle untergeordneten Knoten von SCENE sowie der Knoten SCENE selektiert. Anschließend werden über das Prädikat ```count(SPEECH) < 10``` alle Titel, die weniger als zehn Sprechakte haben, ermittelt.
+    * b.) ```//ACT/SCENE/SPEECH/LINE/text()[contains(.,"Part them; they are incensed.")]/../../preceding-sibling::STAGEDIR[position() = count(//ACT/SCENE/SPEECH/LINE/text()[contains(.,"Part them; they are incensed.")])]/text()```  
+    Der XPath Ausdruck ```//ACT/SCENE/SPEECH/LINE/text()[contains(.,"Part them; they are incensed.")]``` selektiert den Knoten ```LINE``` , in welchem der Text "Part them; they are incensed." steht. Anschließend wird zwei Knotenebenen zurück navigiert. Im Weiteren wird der Knoten ```STAGEDIR``` mithilfe eines Prädikats selektiert. In dem Prädikat wird der Knoten ```STAGEDIR``` ausgewählt, bevor King Claudius sagt "Part
+them; they are incensed.".
     * c.) 
         * ```//ACT//SPEECH[position() = 2]/SPEAKER/text()```   
-        Dieser Ausdruck wählt das zweite SPEECH Elemente des Elternknotens aus.
+        Dieser Ausdruck wählt das zweite SPEECH Element des Elternknotens aus.
         * ```//ACT//SPEECH[position() = 187]/SPEAKER/text()```
         Dieser Ausdruck wählt das 187. SPEECH Element des Elternknotens aus (In der Hamlet.xml Datei liefert dieser Befehl keine Ausgabe.).   
         * ```//ACT/descendant::SPEECH[position() = 2]/SPEAKER/text()```  
