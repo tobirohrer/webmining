@@ -20,13 +20,13 @@ https://t3n.de/news/<titel_des_artikels>
 * Beispiel (HTML-Auszug):
 URL: https://t3n.de/news/starlink-spacex-60-satelliten-1219838/ (Zugegriffen am 11.11.2019)
 
-## Teil 1
+## Teil 1: Finden von Mustern in Texten
 Diese Aufgabe wurde im Juypter Notebook [p1\_regulaere\_ausdrucke](https://github.com/tobirohrer/webmining/blob/master/praktikum1/p1_regulaere_ausdruecke.ipynb) bearbeitet. 
 
 Anmerkung zu Übung 3: Hier haben wir `-.2` zusätzlich in unsere Ergebnismenge aufgenommen.   
 Anmerkung zu Übung 5: Hier haben wir zwei Reguläre Ausdrücke gefunden. Der erste RegEx extrahiert nur neunstellige Postleitzahlen. Der zweite RegEx extrahiert  fünf- oder neunstellige Postleitzahlen.
 
-## Teil 2
+## Teil 2: Finden von Mustern in XML Dateien
 1. Klinik.xml:
     * a.) `//Pfleger[@Station='Rehabilitation']/Name/*/text()`   
     Es werden alle untergeordneten Knoten von Pfleger sowie der Knoten Pfleger selektiert. Die Selektierung des Pfleger Knotens wird mithilfe eines Prädikats weiter eingeschränkt. Die Einschränkung erfolgt über das Attribut `@Station='Rehabilitation'`. Anschließend werden über den Unterknoten `Name` der Vorname und der Nachname selektiert. 
@@ -62,7 +62,7 @@ them; they are incensed.".
     * Kategorie: `//ul[@class='o-list c-breadcrumb']/li[position() = 2]/a[@class='u-text-extrasmall u-color-mute u-link-simple']/text()`   
     Die Kategorie eines Artikels steht in einem Unterknoten des ul-Tags mit der Klasse `'o-list c-breadcrumb'`. Die Unterknoten sind li-Tags, wobei sich die Kategorie im zweiten li-Tag befindet. In diesem li-Tag steht die Kategorie in einem a-Tag. Die Kategorie kann schließlich über die Klasse `'u-text-extrasmall u-color-mute u-link-simple'` ermittelt werden.
 
-## Teil 3
+## Teil 3: Crawling und Linkextraktion
 
 ### 3.1 Implementierung Scrapy Crawler
 
