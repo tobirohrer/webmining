@@ -23,7 +23,7 @@ URL: https://t3n.de/news/starlink-spacex-60-satelliten-1219838/ (Zugegriffen am 
 ## Teil 1
 Diese Aufgabe wurde im Juypter Notebook [p1\_regulaere\_ausdrucke](https://github.com/tobirohrer/webmining/blob/master/praktikum1/p1_regulaere_ausdrucke.ipynb) bearbeitet. 
 
-Anmerkung zu Übung 3: Hier haben wir `-.2` zusätzlich in unserer Ergebnismenge aufgenommen.   
+Anmerkung zu Übung 3: Hier haben wir `-.2` zusätzlich in unsere Ergebnismenge aufgenommen.   
 Anmerkung zu Übung 5: Hier haben wir zwei Reguläre Ausdrücke gefunden. Der erste RegEx extrahiert nur neunstellige Postleitzahlen. Der zweite RegEx extrahiert  fünf- oder neunstellige Postleitzahlen.
 
 ## Teil 2
@@ -116,7 +116,7 @@ class T3nDataSpider(scrapy.Spider):
             yield scrapy.Request(absolute_next_page_url)
 ```
 
-Die Abbruchbedingung unserer Spider wurde zunächst auf einen Pagecount von jeweils 500 Seiten definiert. Hierfür musste im CrawlerProess die folgende Eigenschaft gesetzt werden:
+Die Abbruchbedingung unserer Spider wurde zunächst auf einen Pagecount von jeweils 500 Seiten definiert. Hierfür musste im CrawlerProcess die folgende Eigenschaft gesetzt werden:
 
 ```
     c = CrawlerProcess({
@@ -171,7 +171,7 @@ Auf den nachfolgenden Plots ist zu erkennen, dass die Seiten auf [t3n/news](t3n.
 ![alt text](./plots/incoming_links_t3n.png)
 
 #### Zusätzliche Statistiken
-Zunächst sollte geklärt werden, wie viele URLs von T3n auf externe Seiten zeigen. Der nachfolgende Plot zeigt das Verhältnis von t3n zu externen URLs. Diese Statistik war die Grundlage für die Erkenntnis, dass t3n neben Content auch ausreichend Links zum Crawlen enthält.
+Zunächst sollte geklärt werden, wie viele URLs von t3n auf externe Seiten zeigen. Der nachfolgende Plot zeigt das Verhältnis von t3n zu externen URLs. Diese Statistik war die Grundlage für die Erkenntnis, dass t3n neben Content auch ausreichend Links zum Crawlen enthält.
 
 ![alt text](./plots/distribution_internal_external_links_t3n.png)
 
@@ -201,7 +201,7 @@ for index, row in graph.iterrows():
 ```
 
 
-Nachstehend ist ein beispielhafter Plot des Graphen zu sehen. Es werden Seiten, die öfter als 10 mal von T3n verlinkt werden gezeit.
+Nachstehend ist ein beispielhafter Plot des Graphen zu sehen. Es werden Seiten, die öfter als 10 mal von t3n verlinkt werden, gezeigt.
 
 ![alt text](./plots/graph_t3n.png)
 
