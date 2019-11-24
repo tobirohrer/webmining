@@ -28,14 +28,14 @@ Anmerkung zu Übung 5: Hier haben wir zwei Reguläre Ausdrücke gefunden. Der er
 
 ## Teil 2: Finden von Mustern in XML Dateien
 1. Klinik.xml:
-    * a.) `//Pfleger[@Station='Rehabilitation']/Name/*/text()`   
+    * a.) `//Pfleger[@Station='Rehabilitation']/Name/*`   
     Es werden alle untergeordneten Knoten von Pfleger sowie der Knoten Pfleger selektiert. Die Selektierung des Pfleger Knotens wird mithilfe eines Prädikats weiter eingeschränkt. Die Einschränkung erfolgt über das Attribut `@Station='Rehabilitation'`. Anschließend werden über den Unterknoten `Name` der Vorname und der Nachname selektiert. 
     * b.) `//Stationen/Station[contains(Standort,'Seestrasse') and count(Bett)>2]/Name/text()`   
     Es werden alle untergeordneten Knoten von Stationen sowie der Knoten Stationen selektiert. Im nächsten Schritt werden über den Knoten Station mithilfe des Prädikats `contains(Standort,'Seestrasse') and count(Bett)>2` alle Stationen in der Seestraße, die mehr als zwei Betten haben selektiert. Abschließend wird über den Knoten `Name` der Name ausgewählt.
     * c.) `//Pfleger[@ID=/Klinik/Stationen/Station/@Leitung]/Name/Nachname/text()`   
     Zunächst werden alle untergeordneten Knoten von Pfleger sowie der Knoten Pfleger selektiert. Als nächstes werden mithilfe des Prädikats `@ID=/Klinik/Stationen/Station/@Leitung` alle Pfleger ausgewählt, die eine Station leiten. Anschließend wird der Nachname der leitenden Pfleger ermittelt.
-    * d.) `//angestelltes_Personal/*/Adresse[Stadt='Berlin']/preceding-sibling::Name/*/text()`   
-    Als erstes werden alle untergeordneten Knoten von `angestelltes_Personal` sowie der Knoten `angestelltes_Personal` selektiert. Im nächsten Schritt wird über den Knoten `Adresse` ermittelt, welche Mitarbeiter in Berlin wohnen.
+    * d.) `//Adresse[Stadt='Berlin']/preceding-sibling::Name/*`   
+    Als erstes wird über den Knoten `Adresse` ermittelt, welche Mitarbeiter in Berlin wohnen. Anschließend wird über den Knoten Namen der Vor- und Nachname selektiert.
 2. Hamlet.xml:
     * a.) `//SCENE[count(SPEECH) < 10]/TITLE/text()`
     Zunächst werden alle untergeordneten Knoten von SCENE sowie der Knoten SCENE selektiert. Anschließend werden über das Prädikat `count(SPEECH) < 10` alle Titel, die weniger als zehn Sprechakte haben, ermittelt.
