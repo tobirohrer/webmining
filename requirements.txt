@@ -1,0 +1,11 @@
+scrapy
+jupyter
+pandas
+tld
+seaborn
+numpy
+scipy
+matplotlib
+networkx
+tldextract
+hdbcli
