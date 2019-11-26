@@ -1,6 +1,7 @@
 import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.crawler import CrawlerProcess
+import uuid
 
 
 class T3nUrlSpider(scrapy.Spider):
@@ -29,7 +30,7 @@ class T3nDataSpider(scrapy.Spider):
         teaser = response.xpath("//p[@class='u-text-teaser']/text()").extract()     
         text = response.xpath("//p[@class='u-text-teaser']/following-sibling::p/text()").extract()
         category = response.xpath("//ul[@class='o-list c-breadcrumb']/li[position() = 2]/a[@class='u-text-extrasmall u-color-mute u-link-simple']/text()").extract()
-        yield {'category': category, 'heading': heading, 'teaser': teaser, 'text': text, 'url': response.url}
+        yield {'id': str(uuid.uuid4()), 'category': category, 'heading': heading, 'teaser': teaser, 'text': text, 'url': response.url}
 
         extractor = LinkExtractor(allow='news', allow_domains=self.allowed_domains)
         links = extractor.extract_links(response)
@@ -53,4 +54,4 @@ def run_crawler(spider):
     c.start()  # the script will block here until the crawling is finished
     
 
-run_crawler(T3nUrlSpider)
+run_crawler(T3nDataSpider)
