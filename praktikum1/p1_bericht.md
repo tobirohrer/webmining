@@ -55,7 +55,7 @@ them; they are incensed.".
 3. XPath-Ausdrücke für unser Text-Mining Projekt: 
     * Überschrift: `//h2[@class='u-gap-medium u-text-extralarge']/text()`   
     Die Überschrift eines Artikels ist immer mit der Klasse `'u-gap-medium u-text-extralarge'` gekennzeichnet.
-    * Teaser: `//p[@class='u-text-teaser']/text()`   
+    * Teaser: `//p[@class='u-text-teaser']//text()`   
     Der Teaser eines Artikels ist immer mit der Klasse `'u-text-teaser'` gekennzeichnet. 
     * Text: `//p[@class='u-text-teaser']/following-sibling::p//text()`   
     Der Inhalt eines Artikels steht in einem p-Tag mit der Klasse `'u-text-teaser'`.
