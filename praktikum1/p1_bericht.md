@@ -205,8 +205,9 @@ Nachstehend ist ein beispielhafter Plot des Graphen zu sehen. Es werden Seiten, 
 
 ![alt text](./plots/graph_t3n.png)
 
+### 3.4 Content Analyse t3n
+Die Content Analyse wurde in dem Jupyter Notebook [content\_analysis\_t3n](https://github.com/tobirohrer/webmining/blob/master/praktikum1/content_analysis_t3n.ipynb) realisiert.   
 
+In der Statistik wurde die Verteilung der einzelnen Artikel zu den unterschiedlichen Kategorien dargestellt. Das Balkendiagramm zeigt, dass die am häufigsten gecrawlten Artikel aus den beiden Kategorien Software & Infrastruktur und Digitale Gesellschaft stammen. Außerdem sind sehr wenige Artikel zu den Kategorien Marketing und Entwicklung & Design enthalten. 
 
-
-
-
+![alt text](./plots/categories_countplot_t3n.png)
