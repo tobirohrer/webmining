@@ -2,4 +2,4 @@
 **/venv
 **/.idea
 **/.ipynb_checkpoints
-.DS_Store
+.DS_Store   # Ignore .DS_Store file
