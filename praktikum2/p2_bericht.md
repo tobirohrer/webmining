@@ -4,12 +4,25 @@
 * Link zum GitHub Repo: [https://github.com/tobirohrer/webmining](https://github.com/tobirohrer/webmining)
 
 ## Vorbereitung 
+Bei der Umsetzung der Aufgabenstellung wurde das Datenbank Tool [DBeaver](https://dbeaver.io/) verwendet, da das HANA Eclipse Plugin Verbindungsprobleme verursachte. 
+
+### Verbinden mit HANA VM
+#### SQL Statement   
+```select top 10 * from SYSTEM.CMPL100K``` (Ausgabe der ersten zehn Zeilen der Tabelle CMPL100K)
+#### Verbindung mit Python
+Die Durchführung des Beispielskripts befindet sich im Juypter Notebook p2_preparation. 
+
+### Python Extraktionsskript
+Das Extraktionsskript befindet sich im Jupyter Notebook [praktikum2](https://github.com/tobirohrer/webmining/blob/master/praktikum2/praktikum2.ipynb). 
+
 ### Hintergrund der „NHTSA Complaints Datenbank“ 
 Die National Highway Traffic Safety Administration (NHTSA) ist eine zivile Bundesbehörde in den USA für Straßen- und Fahrzeugsicherheit. 
+
 ##### Aufbau der Datenstruktur (Interessante Spalten)
 * CMPLID: NHTSA'S INTERNAL UNIQUE SEQUENCE NUMBER
 * CDESCR: Beschreibung der Beschwerde
 * MFR_NAME: Autohersteller
+
 ### Statistiken für unsere Webdaten
 * Die Verteilung der Top 20 Wörter vor bzw. nach den Löschen der Stop Words 
 * Die Verteilung der Top 20 Part of Speech Tags
