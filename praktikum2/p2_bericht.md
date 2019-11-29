@@ -71,3 +71,28 @@ Wo gibt es ggf. Probleme mit der Datenqualität und wie könnten Sie diese beh
 * Lösungsanstätze: ...
 
 ## Teil 2: Reporting auf zerlegten Texten
+### Statistiken mit SQL und Visualisierung mit Python - NHTSA-Complaints
+Diese Aufgaben wurde im Juypter Notebook [praktikum2_sql](https://github.com/tobirohrer/webmining/blob/master/praktikum2/praktikum2_sql.ipynb) bearbeitet.
+#### 2.1 SQL-View - Worthäufigkeiten (nur Nomen) pro Dokument
+
+#### 2.2 Lexikon
+
+#### 2.3 Verteilung von Worthäufigkeiten
+
+#### 2.4 Mehrdeutigkeit von Wörtern
+
+#### 2.5 Eigene sinnvolle Statistiken und Visualisierungen 
+
+
+### Statistiken mit SQL und Visualisierung mit Python - T3N
+Diese Aufgaben wurde im Juypter Notebook [praktikum2_sql](https://github.com/tobirohrer/webmining/blob/master/praktikum2/praktikum2_sql.ipynb) bearbeitet.
+#### 2.1 SQL-View - Worthäufigkeiten (nur Nomen) pro Dokument
+
+#### 2.2 Lexikon
+
+#### 2.3 Verteilung von Worthäufigkeiten
+
+#### 2.4 Mehrdeutigkeit von Wörtern
+
+#### 2.5 Eigene sinnvolle Statistiken und Visualisierungen 
+
