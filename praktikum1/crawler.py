@@ -32,7 +32,7 @@ class T3nDataSpider(scrapy.Spider):
         category = response.xpath("//ul[@class='o-list c-breadcrumb']/li[position() = 2]/a[@class='u-text-extrasmall u-color-mute u-link-simple']/text()").extract()
         yield {'id': str(uuid.uuid4()), 'category': category, 'heading': heading, 'teaser': teaser, 'text': text, 'url': response.url}
 
-        extractor = LinkExtractor(allow='news', allow_domains=self.allowed_domains)
+        extractor = LinkExtractor(allow=[r'news\/[\w-]+\/$'], allow_domains=self.allowed_domains, deny=('t3n.de/account'))
         links = extractor.extract_links(response)
 
         for link in links:
@@ -42,7 +42,7 @@ class T3nDataSpider(scrapy.Spider):
 
 def run_crawler(spider):
     c = CrawlerProcess({
-        'CLOSESPIDER_PAGECOUNT': 50,
+        'CLOSESPIDER_PAGECOUNT': 1000,
         'USER_AGENT': 'HochschuleDarmstadt-TextWebMining',
         'FEED_FORMAT': 'csv',
         'FEED_URI': spider.name + '.csv',
