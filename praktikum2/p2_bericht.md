@@ -13,7 +13,7 @@ Bei der Umsetzung der Aufgabenstellung wurde das Datenbank Tool [DBeaver](https:
 Die Durchführung des Beispielskripts befindet sich im Juypter Notebook p2_preparation. 
 
 ### Python Extraktionsskript
-Das Extraktionsskript befindet sich im Jupyter Notebook [praktikum2](https://github.com/tobirohrer/webmining/blob/master/praktikum2/praktikum2.ipynb). 
+Das Extraktionsskript befindet sich im Jupyter Notebook [p2_preparation](https://github.com/tobirohrer/webmining/blob/master/praktikum2/p2_preparation.ipynb). 
 
 ### Hintergrund der „NHTSA Complaints Datenbank“ 
 Die National Highway Traffic Safety Administration (NHTSA) ist eine zivile Bundesbehörde in den USA für Straßen- und Fahrzeugsicherheit. 
