@@ -99,7 +99,7 @@ Im Weiteren wurde die Anzahl der Nomen in einem Dokument mit Hilfe der folgenden
 select ID, sum(COUNT) from COUNT_NOUNS group by ID order by sum(COUNT) desc
 ```
 Die Anwort wurde in folgendem Plot graphisch dargestellt.
-![alt text](./plots/nouns_per_document.png)   
+![alt text](./plots/nouns_per_document_t3n.png)   
 Es ist zu erkennen, dass im Mittel ca. 100 Nomen in einem Dokument vorkommen. Des Weiteren wurde im Jupyter Notebook [praktikum2_sql](https://github.com/tobirohrer/webmining/blob/master/praktikum2/praktikum2_sql.ipynb) die Worthäufigkeit bestimmter Nomen in einem Dokument ausgegeben.
 
 #### 2.2 Lexikon
@@ -126,7 +126,11 @@ select AVG(TA_SENTENCE) as AVG_SENTENCE from "$TA_T3NTEXTIND" order by AVG(TA_SE
 Als Ergbnis kam eine durchschnittliche Satzlänge von ca. 14. 89 heraus. 
 
 #### 2.3 Verteilung von Worthäufigkeiten
+![alt text](./plots/barplot_nouns_t3n.png) 
+![alt text](./plots/wordcloud_nouns_t3n.png) 
 
 #### 2.4 Mehrdeutigkeit von Wörtern
 
+
 #### 2.5 Eigene sinnvolle Statistiken und Visualisierungen 
+
