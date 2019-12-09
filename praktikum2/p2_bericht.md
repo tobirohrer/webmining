@@ -90,8 +90,7 @@ Diese Aufgaben wurde im Juypter Notebook [praktikum2_sql](https://github.com/tob
 #### 2.1 SQL-View - Worthäufigkeiten (nur Nomen) pro Dokument
 Das folgende Listing zeigt die Erstellung der SQL-View, welche die Worthäufigkeit (nur Nomen) pro Dokument enthält.   
 ``` python
-sql = 'create view COUNT_NOUNS as select ID, TA_TOKEN, count(*) as COUNT from "$TA_T3NTEXTIND" 
-where TA_TYPE=\'noun\' group by ID, TA_TOKEN'
+sql = 'create view COUNT_NOUNS as select ID, TA_TOKEN, count(*) as COUNT from "$TA_T3NTEXTIND" where TA_TYPE=\'noun\' group by ID, TA_TOKEN'
 cursor.execute(sql)
 ```
 Im Weiteren wurde die Anzahl der Nomen in einem Dokument mit Hilfe der folgenden SQL-Query abgefragt.
@@ -126,8 +125,10 @@ select AVG(TA_SENTENCE) as AVG_SENTENCE from "$TA_T3NTEXTIND" order by AVG(TA_SE
 Als Ergbnis kam eine durchschnittliche Satzlänge von ca. 14. 89 heraus. 
 
 #### 2.3 Verteilung von Worthäufigkeiten
-![alt text](./plots/barplot_nouns_t3n.png) 
-![alt text](./plots/wordcloud_nouns_t3n.png) 
+Die Verteilung der Nomen in dem gecrawlten Datensatz ist im nachfolgenden Plot gezeigt.
+![alt text](./plots/barplot_nouns_t3n.png)
+
+![alt text](./plots/wordcloud_nouns_t3n.png)
 
 #### 2.4 Mehrdeutigkeit von Wörtern
 
