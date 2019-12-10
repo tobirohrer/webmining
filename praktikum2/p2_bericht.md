@@ -127,6 +127,7 @@ Als Ergbnis kam eine durchschnittliche Satzlänge von ca. 14. 89 heraus.
 #### 2.3 Verteilung von Worthäufigkeiten
 Die Verteilung der Nomen in dem gecrawlten Datensatz ist im nachfolgenden Plot gezeigt.
 ![alt text](./plots/barplot_nouns_t3n.png)
+Der Plot zeigt, dass in dem gecrawlten Datensatz sehr viel über Apple und Google gesprochen wird. 
 
 ![alt text](./plots/wordcloud_nouns_t3n.png)
 
