@@ -121,7 +121,23 @@ Die Worthäufigkeit der Nomen lassen sich ebenfalls sehr aussagekräfig in einer
 In der Wordcloud sind die drei am häufigsten vorkommenden Nomen (vehicle, car) am größten dargestellt. 
 
 #### 2.4 Mehrdeutigkeit von Wörtern
+Die Mehrdeutigkeit von Wörtern in einem Dokument wurde mit Hilfe einer SQL-View realisiert. Im folgenden Listing ist die Erzeugung der SQl-View gezeigt.
 
+```sql
+create view POSTAGS_NHTSA as select TA_NORMALIZED as nor, CMPLID as id, TA_TYPE as type, count(*) as count_words from "$TA_CDESCRIND" where TA_TYPE = \'noun\' or TA_TYPE = \'verb\' or TA_TYPE = \'adjective\' group by TA_NORMALIZED, CMPLID, TA_TYPE having count(*)>1
+```
+
+Im Weiteren wurde eine SQL-Abfrage an die SQL-View gestellt, welche mehrdeutige Wörtern in einem Dokument zurückgibt. Die Wörter wurden nach ihrer Mehrdeutigkeit sortiert. 
+
+```sql
+select NOR, ID, count(NOR) from POSTAGS_NHTSA group by NOR, ID having count(NOR) > 1
+```
+
+Im Ergebnis stellte sicher heraus, dass Wörter maximal zwei POS-Tags zugeordnet wurden.    
+Beispiele hierfür sind:   
+* put (Adjektiv und Verb)
+* concrete (Nomen und Adjektiv)
+* rental (Nomen und Adjektiv)
 
 #### 2.5 Eigene sinnvolle Statistiken und Visualisierungen 
 
