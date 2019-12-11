@@ -127,12 +127,38 @@ Als Ergbnis kam eine durchschnittliche Satzlänge von ca. 14. 89 heraus.
 #### 2.3 Verteilung von Worthäufigkeiten
 Die Verteilung der Nomen in dem gecrawlten Datensatz ist im nachfolgenden Plot gezeigt.
 ![alt text](./plots/barplot_nouns_t3n.png)
-Der Plot zeigt, dass in dem gecrawlten Datensatz sehr viel über Apple und Google gesprochen wird. 
+Der Plot zeigt, dass in dem gecrawlten Datensatz sehr viel über Apple und Google gesprochen wird. Im Weiteren werden Unternehmen wie bspw. Amazon, Microsoft oder Facebook nur etwa halb so häufig in den Daten genannt. Außerdem ist zu erwähnen, dass die Begriffe Android und iPhone sogar häufig vorkommen, als bspw. die Unternehmen Amazon, Microsoft oder Facebook. Diese Ergebnisse deuten darauf hin, dass in dem gecrawlten Datensatz vor allem über die Unternehmen Google und Apple, sowie deren Produkte (z.B.: Android und iPhone) geredet wird. 
+
+Die Worthäufigkeit der Nomen lassen sich ebenfalls sehr aussagekräfig in einer Wordcloud darstellen. 
 
 ![alt text](./plots/wordcloud_nouns_t3n.png)
 
-#### 2.4 Mehrdeutigkeit von Wörtern
+In der Wordcloud sind die drei am häufigsten vorkommenden Nomen (Google, Apple und Unternehmen) am größten dargestellt. 
 
+Im nächsten Schritt wurde sich betrachtet, wie sich die Wordhäufigkeit der Nomen verändert, wenn wir nur Artikel aus der Kategorie Marketing betrachten. Im nachfolgenden Plot ist die Verteilung der Nomen dargestellt. Es wurden die Top 10 geplottet.
+
+![alt text](./plots/barplot_marketing_t3n.png)
+
+Es ist zu erkennen, dass sich unter den Top 3 die Unternehmen Facebook und Google befinden. Das Unternehmen Apple hingegen ist nicht unter den Top 10 zu finden, obwohl der Begriff Apple häufig im Datensatz vorkommt, wie in der vorangeganenen Anlayse gezeigt wurde. 
+
+#### 2.4 Mehrdeutigkeit von Wörtern
+Die Mehrdeutigkeit von Wörtern in einem Dokument wurde mit Hilfe einer SQL-View realisiert. Im folgenden Listing ist die SQl-View gezeigt.
+
+```sql
+create view POSTAGS as select TA_NORMALIZED as nor, ID as id, TA_TYPE as type, count(*) as count_words from "$TA_T3NTEXTIND" where TA_TYPE = \'noun\' or TA_TYPE = \'verb\' or TA_TYPE = \'adjective\' group by TA_NORMALIZED, ID, TA_TYPE having count(*)>1
+```
+
+Im Weiteren wurde eine SQL-Abfrage an die SQL-View gestellt, welche mehrdeutige Wörtern in einem Dokument zurückgibt. Die Wörter wurden nach ihrer Mehrdeutigkeit sortiert. 
+
+```sql
+select NOR, ID, count(NOR) from POSTAGS group by NOR, ID having count(NOR) > 1 order by count(NOR) desc
+```
+
+Im Ergebnis stellte sicher heraus, dass Wörter maximal zwei POS-Tags zugeordnet wurden.    
+Beispiele hierfür sind:   
+* deutsche (Adjektiv und Nomen)
+* nutzen (Nomen und Verb)
+* bowl (Verb und Nomen)
 
 #### 2.5 Eigene sinnvolle Statistiken und Visualisierungen 
 
