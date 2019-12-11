@@ -72,14 +72,48 @@ Wo gibt es ggf. Probleme mit der Datenqualität und wie könnten Sie diese beh
 
 ## Teil 2: Reporting auf zerlegten Texten
 ### Statistiken mit SQL und Visualisierung mit Python - NHTSA-Complaints
-Diese Aufgaben wurden im Juypter Notebook [praktikum2_sql](https://github.com/tobirohrer/webmining/blob/master/praktikum2/praktikum2_sql.ipynb) bearbeitet.
+Diese Aufgaben wurden im Juypter Notebook [praktikum2_NHTSA_sql](https://github.com/tobirohrer/webmining/blob/master/praktikum2/praktikum2_NHTSA_sql.ipynb) bearbeitet.
+
 #### 2.1 SQL-View - Worthäufigkeiten (nur Nomen) pro Dokument
+Das folgende Listing veranschaulicht die Erzeugung der SQL-View, die die Worthäufigkeit (nur Nomen) pro Dokument enthält.
+``` python
+sql = 'create view COUNT_NOUNS_NHTSA as select CMPLID, TA_TOKEN, count(*) as COUNT from "$TA_CDESCRIND" where TA_TYPE=\'noun\' group by CMPLID, TA_TOKEN'
+cursor.execute(sql)
+```
+Des Weiteren wurde die Anzahl der Nomen in einem Dokument mit Hilfe der folgenden SQL-Query abgefragt.
+```sql
+select CMPLID, sum(COUNT) from COUNT_NOUNS_NHTSA group by CMPLID order by sum(COUNT) desc
+```
+Folgender Plot zeigt die Worthäufigkeit der Nomen:   
+![alt text](./plots/nouns_per_document_NHTSA.png)   
+Es ist zu erkennen, dass im Mittel ca. 20 Nomen in einem Dokument vorkommen. Des Weiteren wurde im Jupyter Notebook [praktikum2_NHTSA_sql](https://github.com/tobirohrer/webmining/blob/master/praktikum2/praktikum2_NHTSA_sql.ipynb) die Worthäufigkeit bestimmter Nomen in einem Dokument ausgegeben.
 
 #### 2.2 Lexikon
+Das Lexikon der Tabelle CMPL100K besitzt 71649 Tokens. Im nächsten Schritt wurden Satzzeichen und Zahlen aus dem Lexikon entfernt. Das Lexikon hatte dann noch eine Größe von 63447. Dieser Schritt wurde mit einer einfachen SQL-Query umgesetzt. Im nächsten Listing ist die Query gezeigt. 
+```sql
+select distinct TA_TOKEN from "$TA_CDESCRIND" where TA_TYPE <> \'punctuation\' and TA_TYPE <> \'number\'
+```
+Des Weiteren sollte man häufige vorkommende Wörter löschen, dies kann durch das Löschen der sogenannten Stopwords erreicht werden. Nach dem Löschen dieser Wörter hatte das Lexikon eine Größe von 63403. Außerdem wurde die durchschnittliche Länge eines Dokuments untersucht. Die durchschnittliche Länge liegt bei ca. 101,25 Zeichen. Die Abfrage dieser Länge wurde über eine weitere SQL-View realisiert.
+Im folgenden Listing ist die Erstellung der View gezeigt.
+```sql
+create view COUNT_TOKEN_NHTSA as select CMPLID, count(*) as COUNT from "$TA_CDESCRIND" group by CMPLID order by count(*) desc
+```
+Schließlich wurde die durchschnittliche Länge eines Dokuments über folgende SQL-Abfrage abgerufen.
+```sql
+select avg(COUNT) from COUNT_TOKEN_NHTSA
+```
+
+Als nächstes wurde die durchschnittliche Länge eines Satzes über folgende SQL-Query abgefragt.
+```sql
+select AVG(TA_SENTENCE) as AVG_SENTENCE from "$TA_CDESCRIND" order by AVG(TA_SENTENCE) desc
+```
+Als Ergbnis kam eine durchschnittliche Satzlänge von ca. 4,88 Zeichen heraus.
 
 #### 2.3 Verteilung von Worthäufigkeiten
 
+
 #### 2.4 Mehrdeutigkeit von Wörtern
+
 
 #### 2.5 Eigene sinnvolle Statistiken und Visualisierungen 
 
@@ -97,7 +131,7 @@ Im Weiteren wurde die Anzahl der Nomen in einem Dokument mit Hilfe der folgenden
 ```sql
 select ID, sum(COUNT) from COUNT_NOUNS group by ID order by sum(COUNT) desc
 ```
-Die Anwort wurde in folgendem Plot graphisch dargestellt.
+Die Antwort wurde in folgendem Plot graphisch dargestellt.
 ![alt text](./plots/nouns_per_document_t3n.png)   
 Es ist zu erkennen, dass im Mittel ca. 100 Nomen in einem Dokument vorkommen. Des Weiteren wurde im Jupyter Notebook [praktikum2_sql](https://github.com/tobirohrer/webmining/blob/master/praktikum2/praktikum2_sql.ipynb) die Worthäufigkeit bestimmter Nomen in einem Dokument ausgegeben.
 
