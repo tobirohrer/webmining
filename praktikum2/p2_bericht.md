@@ -84,12 +84,30 @@ Des Weiteren wurde die Anzahl der Nomen in einem Dokument mit Hilfe der folgende
 ```sql
 select CMPLID, sum(COUNT) from COUNT_NOUNS_NHTSA group by CMPLID order by sum(COUNT) desc
 ```
-Folgender Plot zeigt die Worthäufigkeit:   
+Folgender Plot zeigt die Worthäufigkeit der Nomen:   
 ![alt text](./plots/nouns_per_document_NHTSA.png)   
 Es ist zu erkennen, dass im Mittel ca. 20 Nomen in einem Dokument vorkommen. Des Weiteren wurde im Jupyter Notebook [praktikum2_NHTSA_sql](https://github.com/tobirohrer/webmining/blob/master/praktikum2/praktikum2_NHTSA_sql.ipynb) die Worthäufigkeit bestimmter Nomen in einem Dokument ausgegeben.
 
 #### 2.2 Lexikon
+Das Lexikon der Tabelle CMPL100K besitzt 71649 Tokens. Im nächsten Schritt wurden Satzzeichen und Zahlen aus dem Lexikon entfernt. Das Lexikon hatte dann noch eine Größe von 63447. Dieser Schritt wurde mit einer einfachen SQL-Query umgesetzt. Im nächsten Listing ist die Query gezeigt. 
+```sql
+select distinct TA_TOKEN from "$TA_CDESCRIND" where TA_TYPE <> \'punctuation\' and TA_TYPE <> \'number\'
+```
+Des Weiteren sollte man häufige vorkommende Wörter löschen, dies kann durch das Löschen der sogenannten Stopwords erreicht werden. Nach dem Löschen dieser Wörter hatte das Lexikon eine Größe von 63403. Außerdem wurde die durchschnittliche Länge eines Dokuments untersucht. Die durchschnittliche Länge liegt bei ca. 101,25 Zeichen. Die Abfrage dieser Länge wurde über eine weitere SQL-View realisiert.
+Im folgenden Listing ist die Erstellung der View gezeigt.
+```sql
+create view COUNT_TOKEN_NHTSA as select CMPLID, count(*) as COUNT from "$TA_CDESCRIND" group by CMPLID order by count(*) desc
+```
+Schließlich wurde die durchschnittliche Länge eines Dokuments über folgende SQL-Abfrage abgerufen.
+```sql
+select avg(COUNT) from COUNT_TOKEN_NHTSA
+```
 
+Als nächstes wurde die durchschnittliche Länge eines Satzes über folgende SQL-Query abgefragt.
+```sql
+select AVG(TA_SENTENCE) as AVG_SENTENCE from "$TA_CDESCRIND" order by AVG(TA_SENTENCE) desc
+```
+Als Ergbnis kam eine durchschnittliche Satzlänge von ca. 4,88 Zeichen heraus.
 
 #### 2.3 Verteilung von Worthäufigkeiten
 
