@@ -93,7 +93,7 @@ Das Lexikon der Tabelle CMPL100K besitzt 71649 Tokens. Im nächsten Schritt wurd
 ```sql
 select distinct TA_TOKEN from "$TA_CDESCRIND" where TA_TYPE <> \'punctuation\' and TA_TYPE <> \'number\'
 ```
-Des Weiteren sollte man häufige vorkommende Wörter löschen, dies kann durch das Löschen der sogenannten Stopwords erreicht werden. Nach dem Löschen dieser Wörter hatte das Lexikon eine Größe von 63403. Außerdem wurde die durchschnittliche Länge eines Dokuments untersucht. Die durchschnittliche Länge liegt bei ca. 101,25 Zeichen. Die Abfrage dieser Länge wurde über eine weitere SQL-View realisiert.
+Des Weiteren sollte man häufige vorkommende Wörter löschen, dies kann durch das Löschen der sogenannten Stopwords erreicht werden. Nach dem Löschen dieser Wörter hatte das Lexikon eine Größe von 63295. Außerdem wurde die durchschnittliche Länge eines Dokuments untersucht. Die durchschnittliche Länge liegt bei ca. 101,25 Zeichen. Die Abfrage dieser Länge wurde über eine weitere SQL-View realisiert.
 Im folgenden Listing ist die Erstellung der View gezeigt.
 ```sql
 create view COUNT_TOKEN_NHTSA as select CMPLID, count(*) as COUNT from "$TA_CDESCRIND" group by CMPLID order by count(*) desc
@@ -107,10 +107,18 @@ Als nächstes wurde die durchschnittliche Länge eines Satzes über folgende SQL
 ```sql
 select AVG(TA_SENTENCE) as AVG_SENTENCE from "$TA_CDESCRIND" order by AVG(TA_SENTENCE) desc
 ```
-Als Ergbnis kam eine durchschnittliche Satzlänge von ca. 4,88 Zeichen heraus.
+Die durchschnittliche Satzlänge beträgt ca. 4,88 Zeichen.
 
 #### 2.3 Verteilung von Worthäufigkeiten
+Die Verteilung der Nomen des Datensatzes NHTSA-Complaints ist im nachfolgenden Plot gezeigt.
+![alt text](./plots/barplot_nouns_NHTSA.png)
+Der Plot zeigt, dass in dem Datensatz NHTSA-Complaints sehr viel über Vehicle und car gesprochen wird. Im Weiteren werden Wörter wie bspw. number oder saftey seltener genannt. 
 
+Die Worthäufigkeit der Nomen lassen sich ebenfalls sehr aussagekräfig in einer Wordcloud darstellen. 
+
+![alt text](./plots/wordcloud_nouns_NHTSA.png)
+
+In der Wordcloud sind die drei am häufigsten vorkommenden Nomen (vehicle, car) am größten dargestellt. 
 
 #### 2.4 Mehrdeutigkeit von Wörtern
 
