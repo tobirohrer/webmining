@@ -218,5 +218,40 @@ Beispiele hierfür sind:
 * nutzen (Nomen und Verb)
 * bowl (Verb und Nomen)
 
-#### 2.5 Eigene sinnvolle Statistiken und Visualisierungen 
+#### 2.5 Eigene sinnvolle Statistiken und Visualisierungen  
+##### 1. Statistik:
+In dieser Statistik wurden die am häufigsten verwendeten Adjektiv geplottet.
 
+![alt text](./plots/adjectives_countplot_t3n.png)
+
+Das Balkendiagramm zeigt, dass häufig die Adjektiv "neue" und "neuen" verwendet werden. Es lässt sich daraus schließen, dass sich in dem Datensatz viele Artikel befinden, welche neue Themen behandeln.
+
+##### 2. Statistik:
+Diese Statistik gibt die Verteilung der einzelnen Artikel auf die jeweiligen Kategorien an.
+
+![alt text](./plots/categories_countplot_t3n.png)
+
+In dem Plot ist zu sehen, dass die meisten Artikel aus der "Kategorie Gadgets" & Lifestyle und "Software & Infrastruktur" stammen. Im Weiteren ist zu erkennen, dass die Kategorien "Digitale Gesellschaft" und "Startups" am wenigsten im Datensatz vertreten sind.
+
+##### 3. Statistik
+In diesem Abschnitt wurde sich die Verteilung von häufig vorkommenden Wörter auf die einzelnen Kategorien betrachtet.
+Es wurden sich die folgenden Wörter/ Unternehmen betrachtet:
+* Apple
+
+![alt text](./plots/barplot_apple_t3n.png)
+
+* Google
+
+![alt text](./plots/barplot_google_t3n.png)
+
+* Facebook
+
+![alt text](./plots/barplot_facebook_t3n.png)
+
+* Microsoft 
+
+![alt text](./plots/barplot_microsoft_t3n.png)
+
+* Amazon
+
+![alt text](./plots/barplot_amazon_t3n.png)
