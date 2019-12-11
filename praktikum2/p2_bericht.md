@@ -72,14 +72,30 @@ Wo gibt es ggf. Probleme mit der Datenqualität und wie könnten Sie diese beh
 
 ## Teil 2: Reporting auf zerlegten Texten
 ### Statistiken mit SQL und Visualisierung mit Python - NHTSA-Complaints
-Diese Aufgaben wurden im Juypter Notebook [praktikum2_sql](https://github.com/tobirohrer/webmining/blob/master/praktikum2/praktikum2_sql.ipynb) bearbeitet.
+Diese Aufgaben wurden im Juypter Notebook [praktikum2_NHTSA_sql](https://github.com/tobirohrer/webmining/blob/master/praktikum2/praktikum2_NHTSA_sql.ipynb) bearbeitet.
+
 #### 2.1 SQL-View - Worthäufigkeiten (nur Nomen) pro Dokument
+Das folgende Listing veranschaulicht die Erzeugung der SQL-View, die die Worthäufigkeit (nur Nomen) pro Dokument enthält.
+``` python
+sql = 'create view COUNT_NOUNS_NHTSA as select CMPLID, TA_TOKEN, count(*) as COUNT from "$TA_CDESCRIND" where TA_TYPE=\'noun\' group by CMPLID, TA_TOKEN'
+cursor.execute(sql)
+```
+Des Weiteren wurde die Anzahl der Nomen in einem Dokument mit Hilfe der folgenden SQL-Query abgefragt.
+```sql
+select CMPLID, sum(COUNT) from COUNT_NOUNS_NHTSA group by CMPLID order by sum(COUNT) desc
+```
+Folgender Plot zeigt die Worthäufigkeit:   
+![alt text](./plots/nouns_per_document_NHTSA.png)   
+Es ist zu erkennen, dass im Mittel ca. 20 Nomen in einem Dokument vorkommen. Des Weiteren wurde im Jupyter Notebook [praktikum2_NHTSA_sql](https://github.com/tobirohrer/webmining/blob/master/praktikum2/praktikum2_NHTSA_sql.ipynb) die Worthäufigkeit bestimmter Nomen in einem Dokument ausgegeben.
 
 #### 2.2 Lexikon
 
+
 #### 2.3 Verteilung von Worthäufigkeiten
 
+
 #### 2.4 Mehrdeutigkeit von Wörtern
+
 
 #### 2.5 Eigene sinnvolle Statistiken und Visualisierungen 
 
@@ -97,7 +113,7 @@ Im Weiteren wurde die Anzahl der Nomen in einem Dokument mit Hilfe der folgenden
 ```sql
 select ID, sum(COUNT) from COUNT_NOUNS group by ID order by sum(COUNT) desc
 ```
-Die Anwort wurde in folgendem Plot graphisch dargestellt.
+Die Antwort wurde in folgendem Plot graphisch dargestellt.
 ![alt text](./plots/nouns_per_document_t3n.png)   
 Es ist zu erkennen, dass im Mittel ca. 100 Nomen in einem Dokument vorkommen. Des Weiteren wurde im Jupyter Notebook [praktikum2_sql](https://github.com/tobirohrer/webmining/blob/master/praktikum2/praktikum2_sql.ipynb) die Worthäufigkeit bestimmter Nomen in einem Dokument ausgegeben.
 
