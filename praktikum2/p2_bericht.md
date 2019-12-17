@@ -110,7 +110,7 @@ select AVG(TA_SENTENCE) as AVG_SENTENCE from "$TA_CDESCRIND" order by AVG(TA_SEN
 Die durchschnittliche Satzlänge beträgt ca. 4,88 Zeichen.
 
 #### 2.3 Verteilung von Worthäufigkeiten
-Die Verteilung der Nomen des Datensatzes NHTSA-Complaints ist im nachfolgenden Plot gezeigt.
+Die Verteilung der Nomen im Datensatz NHTSA-Complaints ist im nachfolgenden Plot gezeigt.
 ![alt text](./plots/barplot_nouns_NHTSA.png)
 Der Plot zeigt, dass in dem Datensatz NHTSA-Complaints sehr viel über Vehicle und car gesprochen wird. Im Weiteren werden Wörter wie bspw. number oder saftey seltener genannt. 
 
@@ -118,7 +118,7 @@ Die Worthäufigkeit der Nomen lassen sich ebenfalls sehr aussagekräfig in einer
 
 ![alt text](./plots/wordcloud_nouns_NHTSA.png)
 
-In der Wordcloud sind die drei am häufigsten vorkommenden Nomen (vehicle, car) am größten dargestellt. 
+In der Wordcloud sind die drei am häufigsten vorkommenden Nomen (vehicle, car, tire) am größten dargestellt. 
 
 #### 2.4 Mehrdeutigkeit von Wörtern
 Die Mehrdeutigkeit von Wörtern in einem Dokument wurde mit Hilfe einer SQL-View realisiert. Im folgenden Listing ist die Erzeugung der SQl-View gezeigt.
@@ -143,7 +143,7 @@ Beispiele hierfür sind:
 
 
 ### Statistiken mit SQL und Visualisierung mit Python - T3N
-Diese Aufgaben wurde im Juypter Notebook [praktikum2_sql](https://github.com/tobirohrer/webmining/blob/master/praktikum2/praktikum2_sql.ipynb) bearbeitet.
+Diese Aufgaben wurden im Juypter Notebook [praktikum2_sql](https://github.com/tobirohrer/webmining/blob/master/praktikum2/praktikum2_sql.ipynb) bearbeitet.
 
 #### 2.1 SQL-View - Worthäufigkeiten (nur Nomen) pro Dokument
 Das folgende Listing zeigt die Erstellung der SQL-View, welche die Worthäufigkeit (nur Nomen) pro Dokument enthält.   
@@ -165,7 +165,7 @@ Das Lexikon in unseren Datenbank besitzt 38117 Tokens. Im nächsten Schritt wurd
 select distinct TA_TOKEN from "$TA_T3NTEXTIND" where TA_TYPE <> \'punctuation\' and 
 TA_TYPE <> \'number\'
 ```
-Im Weiteren sollte man häufige vorkommende Wörter löschen, dies kann durch das Löschen der sogenannten Stopwords erreicht werden. Nach dem Löschen dieser Wörter hatte das Lexikon eine Größe von 3755. Außerdem wurde die durchschnittliche Länge eines Dokuments untersucht. Die durchschnittliche Länge liegt bei ca. 536.31. Die Abfrage dieser Länge wurde über eine weitere SQL-View realisiert.
+Im Weiteren sollte man häufige vorkommende Wörter löschen, dies kann durch das Löschen der sogenannten Stopwords erreicht werden. Nach dem Löschen dieser Wörter hatte das Lexikon eine Größe von 3755. Außerdem wurde die durchschnittliche Länge eines Dokuments untersucht. Die durchschnittliche Länge liegt bei ca. 536,31. Die Abfrage dieser Länge wurde über eine weitere SQL-View realisiert.
 Im folgenden Listing ist die Erstellung der View gezeigt.
 ```sql
 create view COUNT_TOKEN as select ID, count(*) as COUNT from "$TA_T3NTEXTIND" group by ID 
@@ -180,12 +180,12 @@ Als nächstes wurde die durchschnittliche Länge eines Satzes über folgende SQL
 ```sql
 select AVG(TA_SENTENCE) as AVG_SENTENCE from "$TA_T3NTEXTIND" order by AVG(TA_SENTENCE) desc
 ```
-Als Ergbnis kam eine durchschnittliche Satzlänge von ca. 14. 89 heraus. 
+Als Ergbnis kam eine durchschnittliche Satzlänge von ca. 14,89 heraus. 
 
 #### 2.3 Verteilung von Worthäufigkeiten
-Die Verteilung der Nomen in dem gecrawlten Datensatz ist im nachfolgenden Plot gezeigt.
+Die Verteilung der Nomen im gecrawlten Datensatz ist im nachfolgenden Plot gezeigt.
 ![alt text](./plots/barplot_nouns_t3n.png)
-Der Plot zeigt, dass in dem gecrawlten Datensatz sehr viel über Apple und Google gesprochen wird. Im Weiteren werden Unternehmen wie bspw. Amazon, Microsoft oder Facebook nur etwa halb so häufig in den Daten genannt. Außerdem ist zu erwähnen, dass die Begriffe Android und iPhone sogar häufig vorkommen, als bspw. die Unternehmen Amazon, Microsoft oder Facebook. Diese Ergebnisse deuten darauf hin, dass in dem gecrawlten Datensatz vor allem über die Unternehmen Google und Apple, sowie deren Produkte (z.B.: Android und iPhone) geredet wird. 
+Der Plot zeigt, dass in dem gecrawlten Datensatz sehr viel über Apple und Google gesprochen wird. Im Weiteren werden Unternehmen wie bspw. Amazon, Microsoft oder Facebook nur etwa halb so häufig in den Daten genannt. Außerdem ist zu erwähnen, dass die Begriffe Android und iPhone sogar häufiger vorkommen, als bspw. die Unternehmen Amazon, Microsoft oder Facebook. Diese Ergebnisse deuten darauf hin, dass in dem gecrawlten Datensatz vor allem über die Unternehmen Google und Apple, sowie deren Produkte (z.B.: Android und iPhone) geredet wird. 
 
 Die Worthäufigkeit der Nomen lassen sich ebenfalls sehr aussagekräfig in einer Wordcloud darstellen. 
 
@@ -200,7 +200,7 @@ Im nächsten Schritt wurde sich betrachtet, wie sich die Wordhäufigkeit der Nom
 Es ist zu erkennen, dass sich unter den Top 3 die Unternehmen Facebook und Google befinden. Das Unternehmen Apple hingegen ist nicht unter den Top 10 zu finden, obwohl der Begriff Apple häufig im Datensatz vorkommt, wie in der vorangeganenen Anlayse gezeigt wurde. 
 
 #### 2.4 Mehrdeutigkeit von Wörtern
-Die Mehrdeutigkeit von Wörtern in einem Dokument wurde mit Hilfe einer SQL-View realisiert. Im folgenden Listing ist die SQl-View gezeigt.
+Die Mehrdeutigkeit von Wörtern in einem Dokument wurde mit Hilfe einer SQL-View realisiert. Im folgenden Listing ist die SQL-View gezeigt.
 
 ```sql
 create view POSTAGS as select TA_NORMALIZED as nor, ID as id, TA_TYPE as type, count(*) as count_words from "$TA_T3NTEXTIND" where TA_TYPE = \'noun\' or TA_TYPE = \'verb\' or TA_TYPE = \'adjective\' group by TA_NORMALIZED, ID, TA_TYPE having count(*)>1
@@ -234,24 +234,34 @@ Diese Statistik gibt die Verteilung der einzelnen Artikel auf die jeweiligen Kat
 In dem Plot ist zu sehen, dass die meisten Artikel aus der "Kategorie Gadgets" & Lifestyle und "Software & Infrastruktur" stammen. Im Weiteren ist zu erkennen, dass die Kategorien "Digitale Gesellschaft" und "Startups" am wenigsten im Datensatz vertreten sind.
 
 ##### 3. Statistik
-In diesem Abschnitt wurde sich die Verteilung von häufig vorkommenden Wörter auf die einzelnen Kategorien betrachtet.
+In diesem Abschnitt wurde sich die Verteilung von häufig vorkommenden Wörter in Bezug auf die einzelnen Kategorien betrachtet.
 Es wurden sich die folgenden Wörter/ Unternehmen betrachtet:
 * Apple
 
 ![alt text](./plots/barplot_apple_t3n.png)
 
+Der Plot zeigt, dass das Unternehmen Apple vor allem häufig im Zusammenhang mit den Kategorien "Gadgets & Lifestyle" und "Software & Infrastruktur" genannt wird.
+
 * Google
 
 ![alt text](./plots/barplot_google_t3n.png)
+
+In diesem Plot ist zu sehen, dass das Unternehmen ebenfalls häufig in den Kategorien "Gadgets & Lifestyle" und "Software & Infrastruktur" genannt wird. Es ist allerdings auch anzumerken, dass das Wort Google häufiger in der Kategorie "Marketing" vorkommt als bspw. das Wort Apple.
 
 * Facebook
 
 ![alt text](./plots/barplot_facebook_t3n.png)
 
+Das Wort Facebook wird vor allem häufig in der Kategorie "Marketing" genannt.
+
 * Microsoft 
 
 ![alt text](./plots/barplot_microsoft_t3n.png)
 
+Das Unternehmen Microsoft wird sehr häufig in den Kategorien "Software & Infrastruktur" und "Gadgets & Lifestyle" genannt.
+
 * Amazon
 
 ![alt text](./plots/barplot_amazon_t3n.png)
+
+Aus dieser Grafik lässt sich ablesen, dass das Wort Amazon vor allem im Zusammenhang mit den Kategorien "E-Commerce" und "Gadgets & Lifestyle" erwähnt wird. 
