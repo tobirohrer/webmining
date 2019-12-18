@@ -16,7 +16,50 @@
 
 
 ## Teil 1: Fortgeschrittenes Reporting und Dokumentähnlichkeit auf zerlegten Texten (SQL)
+### 1. 
+Die zehn häufigsten Folgen von Adjektiv-Nomen Bigrammen im Corpus wurden mithilfe des folgenden SQL-Statements abgefragt.
+```sql
+select top 10 t1.TA_TOKEN, t2.TA_TOKEN, count(*) from "SYSTEM"."$TA_CDESCRIND" as t1, "SYSTEM"."$TA_CDESCRIND" as t2 where t1.cmplid=t2.cmplid and t1.TA_COUNTER=t2.TA_COUNTER-1 and t1.TA_SENTENCE=t2.TA_SENTENCE and t1.TA_TYPE=\'adjective\' and t2.TA_TYPE=\'noun\' group by t1.TA_TOKEN, t2.TA_TOKEN order by count(*) desc
+```
+Die Abfrage lieferte folgendes Ergebnis (absteigend sortiert):   
+Hinweis: Im Bericht wurden nur die Top 5 dargestellt. 
+|Adjektiv|Nomen|Anzahl|
+|---|---|---|
+|REAR|TIRE|4569|
+|STEERING|WHEEL|3154|
+|FRONT|TIRE|2901|
+|APPROXIMATE|FAILURE|2412|
+|SIDE|TIRE|2353|
 
+### 2. 
+Die zehn häufigsten Ko-Vorkommen von Adjektiven innerhalb von eines Satzes wurden mithilfe des folgenden SQL-Statements abgefragt.
+
+```sql
+select top 10 t1.TA_TOKEN as adjective, t2.TA_TOKEN as adjective2, count(*) from "SYSTEM"."$TA_CDESCRIND" as t1, "SYSTEM"."$TA_CDESCRIND" as t2 where t1.cmplid=t2.cmplid and t1.TA_COUNTER<t2.TA_COUNTER and t1.TA_SENTENCE=t2.TA_SENTENCE and t1.TA_TYPE=\'adjective\' and t2.TA_TYPE=\'adjective\' group by t1.TA_TOKEN, t2.TA_TOKEN order by count(*) desc
+```
+Die Abfrage lieferte folgendes Ergebnis (absteigend sortiert): 
+Hinweis: Im Bericht wurden nur die Top 5 dargestellt. 
+|Adjektiv|Adjektiv 2|Anzahl|
+|---|---|---|
+|RIGHT|REAR|1858|
+|FRONT|SIDE|1752|
+|REAR|SIDE|1641|
+|LEFT|REAR|1627|
+|RIGHT|FRONT|1496|
+
+### 3. 
+tf:
+Zunächst wurde das am häufigsten vorkommende Nomen selektiert, dies konnte über folgende SQL-Abfrage realisiert werden. 
+
+```sql
+select top 1 t1.TA_TOKEN as noun, count(*) as maxfreq from "SYSTEM"."$TA_CDESCRIND" as t1 where t1.TA_TYPE=\'noun\' group by t1.TA_TOKEN order by count(*) desc
+```
+
+Im Weiteren wurde über folgende SQL-Abfrage die term frequency ausgeben.
+
+```sql
+select top 3 t1.TA_TOKEN, (count(*)/t2.maxfreq) from "SYSTEM"."$TA_CDESCRIND" as t1, "SYSTEM"."MAX_FREQ_NOUN" as t2 where t1.TA_TYPE=\'noun\' group by t1.TA_TOKEN, t2.maxfreq order by count(*) desc
+```
 
 ## Teil 2: Evaluation
 
