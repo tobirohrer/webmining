@@ -30,7 +30,7 @@ Die National Highway Traffic Safety Administration (NHTSA) ist eine zivile Bunde
 
 ## Teil 1: Informationsextraktion und Textzerlegung
 ### 1.1 - 1.4
-Diese Aufgaben wurden im Jupyter Notebook [praktikum2](https://github.com/tobirohrer/webmining/blob/master/praktikum2/praktikum2.ipynb) bearbeitet.  
+Diese Aufgaben wurden im Jupyter Notebook [praktikum2_sql](https://github.com/tobirohrer/webmining/blob/master/praktikum2/praktikum2_sql.ipynb) bearbeitet.  
 
 ### 1.5/ 1.6 Linguistische Analyse
 #### Erstellung von einem Text-Index 
@@ -144,7 +144,7 @@ Beispiele hierfür sind:
 
 
 ### Statistiken mit SQL und Visualisierung mit Python - T3N
-Diese Aufgaben wurden im Juypter Notebook [praktikum2_sql](https://github.com/tobirohrer/webmining/blob/master/praktikum2/praktikum2_sql.ipynb) bearbeitet.
+Diese Aufgaben wurden im Juypter Notebook [praktikum2_sql](https://github.com/tobirohrer/webmining/blob/master/praktikum2/praktikum2_sql.ipynb) bearbeitet. Des Weiteren wurden die Aufgaben ebenfalls in Python ohne SQL ([praktikum2](https://github.com/tobirohrer/webmining/blob/master/praktikum2/praktikum2.ipynb)) umgesetzt.
 
 #### 2.1 SQL-View - Worthäufigkeiten (nur Nomen) pro Dokument
 Das folgende Listing zeigt die Erstellung der SQL-View, welche die Worthäufigkeit (nur Nomen) pro Dokument enthält.   
