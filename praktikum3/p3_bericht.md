@@ -62,6 +62,42 @@ Im Weiteren wurde über folgende SQL-Abfrage die term frequency ausgeben.
 select top 3 t1.TA_TOKEN, (count(*)/t2.maxfreq) from "SYSTEM"."$TA_CDESCRIND" as t1, "SYSTEM"."MAX_FREQ_NOUN" as t2 where t1.TA_TYPE=\'noun\' group by t1.TA_TOKEN, t2.maxfreq order by count(*) desc
 ```
 
+idf:
+Die inverse document frequency konnte über folgendes SQL-Statement realisiert werden.
+
+```sql
+select TA_TOKEN, count_docs_term, n_total, LOG(10,(n_total/count_docs_term)) as idf from VALUES_IDF
+```
+
+### 1.4
+Im Folgenden ist die SQL-Abfrage zu sehen, welche für den Chi2 Test benötigt wird.
+```sql
+select adjective, noun, o11, o12, o21, o22 from 
+(
+select t1.adjective, t1.noun, w1_and_w2 as o11, (sum_w1_and_w2-SUM(w1_and_w2)) as o12, t3.sum_w1_and_not_w2 as o21, (sum_NOT_w2 - t3.sum_w1_and_not_w2) as o22 from 
+"SYSTEM"."ADJECTIVE_NOUN_BIGRAM" as t1, 
+(select SUM(w1_and_w2) as sum_w1_and_w2 from "SYSTEM"."ADJECTIVE_NOUN_BIGRAM") as t2,
+(select adjective, SUM(w1_and_not_w2) as sum_w1_and_not_w2 from "SYSTEM"."ADJECTIVE_NOUN_BIGRAM_NOT_TIRE" group by adjective) as t3,
+(select SUM(w1_and_not_w2) as sum_NOT_w2 from "SYSTEM"."ADJECTIVE_NOUN_BIGRAM_NOT_TIRE" order by sum_NOT_w2 desc) as t4 where t3.adjective=t1.adjective group by t1.adjective, t1.noun, w1_and_w2, t2.sum_w1_and_w2, t3.sum_w1_and_not_w2, t4.sum_NOT_w2
+)
+```
+Der Chi2 Test liefert folgendes Ergebnis:   
+Drei statistisch signifikantesten zusammenhängenden Bigramme mit w1=* (beliebig) und w2=Tire:    
+| Adjektiv | Nomen | Chi         
+| :------: | :------: | :------: |
+| SPARE | TIRE | 6579.940291 |
+| SIDE | TIRE | 3694.976263 |
+| FLAT | TIRE | 855.441141 |
+
+
+Drei am wenigsten statistisch signifikant zusammenhängenden Bigramme mit w1=* (beliebig) und w2=Tire:  
+
+| Adjektiv | Nomen | Chi         
+| :------: | :------: | :------: |
+| AUXILIARY | TIRE | 0.003935 |
+| BACK | TIRE | 0.002535 |
+| VIOLENT | TIRE | 0.000019 |
+
 ### 1.5 a
 Für die Berechnung des Skalarprodukt wurde eine neue View zur Hilfe erzeugt. Diese View wurde mit folgenden SQL-Befehl erstellt: 
 ```sql
@@ -124,10 +160,17 @@ Eine Verbesserung des Precision-Recall Wertes kann durch die Erhöhung der Varia
 
 
 ### 3. Zeichenbasiertes Shingling
-Das wortbasierte und das zeichenbasierte Shingling wurden mit unterschiedlichen Freiheitsgraden getetest. Die Tests wurden mit einem Random-Seed Wert von 42 durchgeführt und sind in folgender Tabelle aufgelistet. 
+Das zeichenbasierte Shingling wurde im Skript [runMinHashExample.py](https://github.com/tobirohrer/webmining/blob/master/praktikum3/runMinHashExample.py) implementiert. Während des Ausführens des Skripts können die folgenden Parameter freigewählt werden:
+
+* randomSeed
+* numHashes
+* numberShingles
+* word (w) oder character (c) (Für wortbasierendes oder zeichenbasierendes Shingling)
+
+Das wortbasierte und das zeichenbasierte Shingling wurden mit unterschiedlichen Freiheitsgraden getestet. Die Tests wurden mit einem Random-Seed Wert von 42 durchgeführt und sind in folgender Tabelle aufgelistet. 
 
 |Shingles|Wortbasiert/ Zeichenbasiert|numHashes|Precision-Recall|
-|---|---|---|---|---|
+|:---:|:---:|:---:|:---:|:---:|
 |3|Wortbasiert|2|0.67|
 |3|Wortbasiert|4|1.00|
 |6|Wortbasiert|2|0.83|
