@@ -24,8 +24,9 @@ Die National Highway Traffic Safety Administration (NHTSA) ist eine zivile Bunde
 * MFR_NAME: Autohersteller
 
 ### Statistiken für unsere Webdaten
-* Die Verteilung der Top 20 Wörter vor bzw. nach den Löschen der Stop Words 
-* Die Verteilung der Top 20 Part of Speech Tags
+* Die Verteilung der am häufigsten verwendeten Adjektive 
+* Die Verteilung der einzelnen Artikel auf die jeweiligen Kategorien
+* Die Verteilung von häufig vorkommenden Wörter in Bezug auf die einzelnen Kategorien
 
 ## Teil 1: Informationsextraktion und Textzerlegung
 ### 1.1 - 1.4
