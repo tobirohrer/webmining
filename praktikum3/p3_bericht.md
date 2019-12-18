@@ -16,7 +16,8 @@
 
 
 ## Teil 1: Fortgeschrittenes Reporting und Dokumentähnlichkeit auf zerlegten Texten (SQL)
-### 1. 
+### 1.1 
+Die Aufgaben wurden im Jupyter-Notebook [praktikum3](https://github.com/tobirohrer/webmining/blob/master/praktikum3/praktikum3.ipynb) umgesetzt.   
 Die zehn häufigsten Folgen von Adjektiv-Nomen Bigrammen im Corpus wurden mithilfe des folgenden SQL-Statements abgefragt.
 ```sql
 select top 10 t1.TA_TOKEN, t2.TA_TOKEN, count(*) from "SYSTEM"."$TA_CDESCRIND" as t1, "SYSTEM"."$TA_CDESCRIND" as t2 where t1.cmplid=t2.cmplid and t1.TA_COUNTER=t2.TA_COUNTER-1 and t1.TA_SENTENCE=t2.TA_SENTENCE and t1.TA_TYPE=\'adjective\' and t2.TA_TYPE=\'noun\' group by t1.TA_TOKEN, t2.TA_TOKEN order by count(*) desc
@@ -31,7 +32,7 @@ Hinweis: Im Bericht wurden nur die Top 5 dargestellt.
 |APPROXIMATE|FAILURE|2412|
 |SIDE|TIRE|2353|
 
-### 2. 
+### 1.2 
 Die zehn häufigsten Ko-Vorkommen von Adjektiven innerhalb von eines Satzes wurden mithilfe des folgenden SQL-Statements abgefragt.
 
 ```sql
@@ -47,7 +48,7 @@ Hinweis: Im Bericht wurden nur die Top 5 dargestellt.
 |LEFT|REAR|1627|
 |RIGHT|FRONT|1496|
 
-### 3. 
+### 1.3 
 tf:
 Zunächst wurde das am häufigsten vorkommende Nomen selektiert, dies konnte über folgende SQL-Abfrage realisiert werden. 
 
@@ -60,6 +61,57 @@ Im Weiteren wurde über folgende SQL-Abfrage die term frequency ausgeben.
 ```sql
 select top 3 t1.TA_TOKEN, (count(*)/t2.maxfreq) from "SYSTEM"."$TA_CDESCRIND" as t1, "SYSTEM"."MAX_FREQ_NOUN" as t2 where t1.TA_TYPE=\'noun\' group by t1.TA_TOKEN, t2.maxfreq order by count(*) desc
 ```
+
+### 1.5 a
+Für die Berechnung des Skalarprodukt wurde eine neue View zur Hilfe erzeugt. Diese View wurde mit folgenden SQL-Befehl erstellt: 
+```sql
+create view TERMS_NHTSA as SELECT CMPLID, TA_TOKEN AS WORD, count(*) AS TERM, POWER(count(*),2) AS TERMSQR FROM "SYSTEM"."$TA_CDESCRIND" WHERE TA_TYPE='noun' GROUP BY CMPLID, TA_TOKEN
+```
+
+Das Skalarprodukt wird berechnet, indem die Terme (Nomen) rausgefiltert werden, die in beiden Dokumenten vorkommen. Anschließend werden die Häufigkeiten der Nomen multipliziert und aufsummiert. Die folgende Python-Funktion wurde implementiert, um das Ähnlichkeitsmaß (Skalarprodukt) für einen gegebenen Anfragevektor auszugeben. 
+```python
+def scalar_product(id):
+    sql = 'SELECT CMPLID, sum(PROD) AS SCALARPRODUCT FROM (SELECT a.CMPLID, a.WORD, a.TERM * b.CountReq AS PROD FROM TERMS_NHTSA AS a, (SELECT TA_TOKEN, count(*) AS CountReq FROM "SYSTEM"."$TA_CDESCRIND" WHERE CMPLID = '+id+' GROUP BY TA_TOKEN) AS b WHERE a.WORD = b.TA_TOKEN) GROUP BY CMPLID ORDER BY SCALARPRODUCT desc LIMIT 10;'
+    cursor.execute(sql)
+    idf = cursor.fetchall()
+    idf_df = pd.DataFrame(idf)
+    print(idf_df)
+```
+
+### 1.5 b
+Für die Durchführung der Kosinus Ähnlichkeit wurde eine neue View zur Hilfe erzeugt. Diese View wurde mit folgenden SQL-Befehl erstellt:   
+```sql
+create view COS_NHTSA as SELECT x.CMPLID AS CMPLID, x.SCALARPRODUCT AS SCALARPRODUCT, y.Cos AS Cos From (SELECT CMPLID, sum(PROD) AS SCALARPRODUCT FROM (SELECT a.CMPLID, a.WORD, a.TERM * b.CountReq AS PROD FROM TERMS_NHTSA AS a, (SELECT TA_TOKEN, count(*) AS CountReq FROM "SYSTEM"."$TA_CDESCRIND" WHERE CMPLID = 119408 GROUP BY TA_TOKEN) AS b WHERE a.WORD = b.TA_TOKEN) GROUP BY CMPLID) AS x, (SELECT CMPLID, SQRT(SUM(TERMSQR)) AS Cos FROM TERMS_NHTSA GROUP BY CMPLID) AS y WHERE x.CMPLID = y.CMPLID
+```
+Die Cosinus Ähnlichkeit wurde mithilfe des Skalarprodukts berechnet. Schließlich wurde eine Python-Funktion implementiert, welche die Cosinus Ähnlichkeit bzgl. eines Anfragevektors ausgibt. 
+```python
+def cosinus(id):
+    sql = 'SELECT CMPLID, SCALARPRODUCT / (Cos * (SELECT SQRT(sum(coutsqr)) FROM (SELECT TA_TOKEN, POWER(count(*),2) AS coutsqr FROM "SYSTEM"."$TA_CDESCRIND" WHERE CMPLID = '+id+' AND TA_TYPE = \'noun\' GROUP BY TA_TOKEN))) AS COSINUS FROM COS_NHTSA ORDER BY COSINUS DESC LIMIT 10'
+    cursor.execute(sql)
+    idf = cursor.fetchall()
+    idf_df = pd.DataFrame(idf)
+    print(idf_df)
+```
+
+### 1.6
+Die jeweils ähnlichsten Dokumente für Complaint 119408 wurden mithilfe der beiden Funktionen aus 1.5 ermittelt. Ein Vergleich der beiden Ähnlichkeitsmaße Skalarprodukt und Cosinus Ähnlichkeit zeigt, dass man mithilfe der Cosinus Ähnlichkeit Duplikate erkennen kann. Für das Complaint 119408 liegt ein Duplikat vor. 
+#### Ähnlichstes Dokumente für Complaint 119408
+#### Top 3 Skalarprodukt
+| Complaint ID  | Value         
+| :-----------: |:-------------:|
+| 1279795       |      37       |
+|  765755       |      31       |
+|  431818       |      28       |
+
+#### Top 3 Cosinus Ähnlichkeit
+| Complaint ID  | Value         
+| :-----------: |:-------------:|
+|    119408    |      1       |
+|    119409    |      1       |
+|    1456180   |    0.8819    |
+
+### 1.7
+Die Aufgaben 1.1 - 1.7 wurden auch für t3n durchgeführt. Die Umsetzung wurde im Jupyter-Notebook [praktikum3](https://github.com/tobirohrer/webmining/blob/master/praktikum3/praktikum3.ipynb) festgehalten.
 
 ## Teil 2: Evaluation
 
