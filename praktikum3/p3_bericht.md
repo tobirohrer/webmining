@@ -3,7 +3,7 @@
 ## Allgemein
 * Link zum GitHub Repo: [https://github.com/tobirohrer/webmining](https://github.com/tobirohrer/webmining)
 
-## Teil 1: Fortgeschrittenes Reporting und Dokumentähnlichkeit auf zerlegten Texten (SQL)
+## Teil 1: Fortgeschrittenes Reporting und Dokumentähnlichkeit auf zerlegten Texten (SQL)
 Die Aufgaben wurden im Jupyter-Notebook [praktikum3](https://github.com/tobirohrer/webmining/blob/master/praktikum3/praktikum3.ipynb) umgesetzt.
 ### 1.1    
 Die zehn häufigsten Folgen von Adjektiv-Nomen Bigrammen im Corpus wurden mithilfe des folgenden SQL-Statements abgefragt.
@@ -11,14 +11,15 @@ Die zehn häufigsten Folgen von Adjektiv-Nomen Bigrammen im Corpus wurden mithil
 select top 10 t1.TA_TOKEN, t2.TA_TOKEN, count(*) from "SYSTEM"."$TA_CDESCRIND" as t1, "SYSTEM"."$TA_CDESCRIND" as t2 where t1.cmplid=t2.cmplid and t1.TA_COUNTER=t2.TA_COUNTER-1 and t1.TA_SENTENCE=t2.TA_SENTENCE and t1.TA_TYPE=\'adjective\' and t2.TA_TYPE=\'noun\' group by t1.TA_TOKEN, t2.TA_TOKEN order by count(*) desc
 ```
 Die Abfrage lieferte folgendes Ergebnis (absteigend sortiert):   
-Hinweis: Im Bericht wurden nur die Top 5 dargestellt. 
-|Adjektiv|Nomen|Anzahl|
-|---|---|---|
-|REAR|TIRE|4569|
-|STEERING|WHEEL|3154|
-|FRONT|TIRE|2901|
-|APPROXIMATE|FAILURE|2412|
-|SIDE|TIRE|2353|
+Hinweis: Im Bericht wurden nur die Top 5 dargestellt.     
+
+| Adjektiv  | Nomen | Anzahl    
+| :-----------: | :-----------: | :-----------: |
+| REAR          | TIRE          | 4569          |
+| STEERING      | WHEEL         | 3154          |
+| FRONT         | TIRE          | 2901          |
+| APPROXIMATE   | FAILURE       | 2412          |
+| SIDE          | TIRE          | 2353          |
 
 ### 1.2 
 Die zehn häufigsten Ko-Vorkommen von Adjektiven innerhalb von eines Satzes wurden mithilfe des folgenden SQL-Statements abgefragt.
@@ -27,9 +28,10 @@ Die zehn häufigsten Ko-Vorkommen von Adjektiven innerhalb von eines Satzes wurd
 select top 10 t1.TA_TOKEN as adjective, t2.TA_TOKEN as adjective2, count(*) from "SYSTEM"."$TA_CDESCRIND" as t1, "SYSTEM"."$TA_CDESCRIND" as t2 where t1.cmplid=t2.cmplid and t1.TA_COUNTER<t2.TA_COUNTER and t1.TA_SENTENCE=t2.TA_SENTENCE and t1.TA_TYPE=\'adjective\' and t2.TA_TYPE=\'adjective\' group by t1.TA_TOKEN, t2.TA_TOKEN order by count(*) desc
 ```
 Die Abfrage lieferte folgendes Ergebnis (absteigend sortiert):   
-Hinweis: Im Bericht wurden nur die Top 5 dargestellt. 
-|Adjektiv|Adjektiv 2|Anzahl|
-|---|---|---|
+Hinweis: Im Bericht wurden nur die Top 5 dargestellt.
+
+| Adjektiv  | Adjektiv 2 | Anzahl   
+|:---:|:---:|:---:|
 |RIGHT|REAR|1858|
 |FRONT|SIDE|1752|
 |REAR|SIDE|1641|
@@ -49,12 +51,13 @@ Im Weiteren wurde über folgende SQL-Abfrage die term frequency ausgegeben.
 ```sql
 select top 3 t1.TA_TOKEN, (count(*)/t2.maxfreq) from "SYSTEM"."$TA_CDESCRIND" as t1, "SYSTEM"."MAX_FREQ_NOUN" as t2 where t1.TA_TYPE=\'noun\' group by t1.TA_TOKEN, t2.maxfreq order by count(*) desc
 ```
-Ergebnisse:
-| Nomen | tf |
-| :---: | :---: |
-| VEHICLE | 1 |
-| CAR | 0.826885 |
-| TIRE | 0.798524 |
+Ergebnisse: 
+
+| Nomen  | tf         
+| :-----------: |:-------------:|
+| VEHICLE       |      1       |
+| CAR       |      0.826885       |
+| TIRE       |      0.798524       |
 
 #### inverse document frequency (idf):
 Die inverse document frequency konnte über folgendes SQL-Statement realisiert werden.
@@ -82,7 +85,7 @@ select t1.adjective, t1.noun, w1_and_w2 as o11, (sum_w1_and_w2-SUM(w1_and_w2)) a
 )
 ```
 Der Chi2 Test liefert folgendes Ergebnis:   
-Die drei statistisch signifikantesten zusammenhängenden Bigramme mit w1=* (beliebig) und w2=Tire:    
+Die drei statistisch signifikantesten zusammenhängenden Bigramme mit w1=* (beliebig) und w2=Tire:    
 | Adjektiv | Nomen | Chi2         
 | :------: | :------: | :------: |
 | SPARE | TIRE | 6579.940291 |
@@ -90,7 +93,7 @@ Die drei statistisch signifikantesten zusammenhängenden Bigramme mit w1=* (bel
 | FLAT | TIRE | 855.441141 |
 
 
-Die drei am wenigsten statistisch signifikant zusammenhängenden Bigramme mit w1=* (beliebig) und w2=Tire:  
+Die drei am wenigsten statistisch signifikant zusammenhängenden Bigramme mit w1=* (beliebig) und w2=Tire:  
 
 | Adjektiv | Nomen | Chi2         
 | :------: | :------: | :------: |
@@ -168,7 +171,7 @@ Das zeichenbasierte Shingling wurde im Skript [runMinHashExample.py](https://git
 
 Das wortbasierte und das zeichenbasierte Shingling wurden mit unterschiedlichen Freiheitsgraden getestet. Die Tests wurden mit einem Random-Seed Wert von 42 durchgeführt und sind in folgender Tabelle aufgelistet. 
 
-|Shingles|Wortbasiert/ Zeichenbasiert|numHashes|Precision-Recall|
+|Shingles|Wortbasiert/ Zeichenbasiert|numHashes|Precision-Recall|          
 |:---:|:---:|:---:|:---:|:---:|
 |3|Wortbasiert|2|0.67|
 |3|Wortbasiert|4|1.00|
