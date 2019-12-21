@@ -66,8 +66,9 @@ Die inverse document frequency konnte über folgendes SQL-Statement realisiert w
 select TA_TOKEN, count_docs_term, n_total, LOG(10,(n_total/count_docs_term)) as idf from VALUES_IDF
 ```
 Ergebnisse:
-| Nomen | idf |
-| :---: | :---: |
+
+| Nomen  | idf         
+| :-----------: |:-------------:|
 | TIRE | 0.562717 |
 | VEHICLE | 0.405825 |
 | CAR | 0.576766 |
@@ -86,12 +87,12 @@ select t1.adjective, t1.noun, w1_and_w2 as o11, (sum_w1_and_w2-SUM(w1_and_w2)) a
 ```
 Der Chi2 Test liefert folgendes Ergebnis:   
 Die drei statistisch signifikantesten zusammenhängenden Bigramme mit w1=* (beliebig) und w2=Tire:    
+
 | Adjektiv | Nomen | Chi2         
 | :------: | :------: | :------: |
 | SPARE | TIRE | 6579.940291 |
 | SIDE | TIRE | 3694.976263 |
 | FLAT | TIRE | 855.441141 |
-
 
 Die drei am wenigsten statistisch signifikant zusammenhängenden Bigramme mit w1=* (beliebig) und w2=Tire:  
 
@@ -171,8 +172,8 @@ Das zeichenbasierte Shingling wurde im Skript [runMinHashExample.py](https://git
 
 Das wortbasierte und das zeichenbasierte Shingling wurden mit unterschiedlichen Freiheitsgraden getestet. Die Tests wurden mit einem Random-Seed Wert von 42 durchgeführt und sind in folgender Tabelle aufgelistet. 
 
-|Shingles|Wortbasiert/ Zeichenbasiert|numHashes|Precision-Recall|          
-|:---:|:---:|:---:|:---:|:---:|
+| Shingles | Wortbasiert/ Zeichenbasiert | numHashes | Precision-Recall     
+| :-----------: |:-------------:| :-------------:| :-------------:|
 |3|Wortbasiert|2|0.67|
 |3|Wortbasiert|4|1.00|
 |6|Wortbasiert|2|0.83|
