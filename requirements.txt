@@ -9,3 +9,7 @@ matplotlib
 networkx
 tldextract
 hdbcli
+gensim
+fastparquet
+python-snappy
+pyarrow
