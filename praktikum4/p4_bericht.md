@@ -47,7 +47,13 @@ Die Topics 1 und 12 konnten wir nicht eindeutig zuordnen. Aus diesem Grund wurde
 ### 1.2 
 Notieren Sie sich, welches Topic in Codeblock 11 als „adult content“ identifiziert wurde. Filtern Sie für die weiteren Aufgaben die entsprechenden Records aus dem „result“ DataFrame aus, also z.B. alle Dokumente mit einer entsprechenden Topicwahrscheinlichkeit > 50%. Öffnen Sie nicht die Links zu den entsprechenden Dokumenten im Browser. Aktivieren Sie sicherheitshalber den installierten Browser-Filter.
 
+Das Topic mit der ID=7 wurde als adult content identifiziert. 
 
+Das folgende Listing gibt die ersten fünf Dokumente aus, welche für Topic 7 eine Topicwahrscheinlichkeit > 50% aufweisen.    
+```python
+result_new = pd.concat([result['Target-URI'], dfnormal], axis=1)
+result_new[result_new[7] > 0.5][:5]
+```
 
 ### 1.3 
 Schauen Sie sich nun für einige andere Topics stichprobenartig Dokumente an. Passen diese zu den vorher von Ihnen vergebenen Topic-Überbegriffen? Warum bzw. warum nicht?
