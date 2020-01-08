@@ -123,17 +123,68 @@ Der Plot mit dem Wert alpha=1 zeigt, dass die Dokuente gleichmäßig auf die Top
 ### 2.1    
 Machen Sie sich, ähnlich wie in Teil I, mit dem erstellten Topicmodell für den NHTSA-Teildatensatz vertraut, indem Sie einzelne Topics bzw. Dokumente genauer unter die Lupe nehmen. Dokumentieren Sie Ihre Erkenntnisse, d.h. in welchen Fällen Sie das Modell für sinnvoll halten und in welchen nicht.
 
+#### Antwort:
+Das folgende Listing zeigt unsere Lookup-Tabelle:
+```python
+topics = {
+    0: 'Headlight', 
+    1: 'Wheel',
+    2: 'Brake',
+    3: 'Recall',
+    4: 'Light', 
+    5: 'Engine',
+    6: 'Fuel', 
+    7: 'Tire', 
+    8: 'Windshield', 
+    9: 'Contact'
+}
+```
+Die meisten Topics können eindeutig bestimmt werden. Beim dritten und vierten Topic hatten wir Schwierigkeiten bei der Zuweisung des Themas. 
 
 
 ### 2.2 
-Überführen Sie das Soft-Clustering in ein Hard-Clustering, indem Sie einen Vektor erstellen, der pro Dokument das Topic mit der höchsten Wahrscheinlichkeit enthält. Die NHTSA-Kategorien (COMPDESCR) finden Sie bereits im Vektor docCats. Berechnen Sie auf dieser Basis die RANDMetrik zum Vergleich von Clusterings und interpretieren Sie diese soweit möglich.
+Überführen Sie das Soft-Clustering in ein Hard-Clustering, indem Sie einen Vektor erstellen, der pro Dokument das Topic mit der höchsten Wahrscheinlichkeit enthält. Die NHTSA-Kategorien (COMPDESCR) finden Sie bereits im Vektor docCats. Berechnen Sie auf dieser Basis die RAND-Metrik zum Vergleich von Clusterings und interpretieren Sie diese soweit möglich.
 
+#### Antwort:
+Wir haben das Soft-Clustering in ein Hard-Clustering. Das folgende Listing zeigt den Python-Code:
 
+```python
+best_topic_document = []
+
+for i in range(0, dfnhtsa.shape[0], 1):
+    topic_p = dfnhtsa.to_numpy()[i].tolist()
+    max_value = np.nanmax(topic_p)
+    max_index = topic_p.index(max_value)
+    
+    best_topic_document.append((i,max_index,max_value) )
+    
+max_p_df = pd.DataFrame(best_topic_document, columns=['Document', 'Topic', 'Probability (P)'])
+max_p_df.head(10)
+```
+Die Ausgabe zeigt die ersten zehn Dokumente mit den jeweiligen Topic-Wahrscheinlichkeiten.
+
+![Tab Hardclustering nhtsa](./plots/hardclustering_nhtsa.png)
+
+RAND-Metrik:   
+$ Accuracy = \frac{TP + TN}{TP+FP+FN+TN} $
+
+Die Accuracy beträgt ca. 0,77. Die Kategorien in dem Datensatz passen gut zu den Dokumenten.
 
 ### 2.3 
 Erstellen Sie eine Kreuztabellle, bei der eine Dimension die Topics und eine Dimension die Kategorien (COMPDESC) darstellen. In den Zellen soll gezählt werden, wie häufig im Corpus das Top-Topic eines Dokuments mit der tatsächlichen Kategorie korrespondiert. Nutzen Sie zur Visualisierung z.B. „clustermap“ aus der Python Bibliothek seaborn. Wie interpretieren Sie die Ergebnisse? Schauen Sie sich einzelne Dokumente als Repräsentanten/Beispiele interessanter Konstellationen in der Kreuztabelle an.
 
+#### Antwort:
+##### Kreuztabelle
+![Tab Cross Table nhtsa](./plots/cross_table_nhtsa.png)
 
+##### Heatmap:
+![Plot Heatmap nhtsa](./plots/heatmap_nhtsa.png)
+
+##### Clustermap:
+![Plot Clustermap nhtsa](./plots/clustermap_nhtsa.png)
+
+Interpretation:
+TODO
 
 ## Teil 3: Topic Modell auf eigenen gecrawlten Texten
  
