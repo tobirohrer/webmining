@@ -102,11 +102,21 @@ result_new[(result_new[5] > 0.4) &  (result_new[11] > 0.4)][:5]
 ```
 Bei dieser Anfrage erhält man einen Treffer zur Webseite michiganflora. Bei dieser Webseite handelt es sich um eine Seite der Universität Michigan. Auf dieser Webseite wird die Pflanze Limonium platyphyllum vorgesetellt. Zu dieser Pflanze gibt es auch medizinische Untersuchungen. 
 
-
 ### 1.5 
 Berechnen Sie zwei neue Modelle (auf dem Original-Corpus mit Adult-Content) mit verändertem Glättungsparameter für die Dokument-Topic Zuordnungen. Die restlichen Parameter sollen beibehalten werden. Berechnen Sie ein Modell mit Glättungsparameter=1 und ein Modell mit Glättungsparameter=10^-18. Wie sollte sich das Modell Ihrer Erwartung nach verändern? Schauen Sie sich wieder jeweils die ersten 20 Zeilen der Dokument-Topic Wahrscheinlichkeitsmatrizen an. Plotten Sie weiterhin die Häufigkeitsverteilungen der „Nicht-NaN-Topics“ pro Dokument. Was fällt Ihnen auf? Entspricht dies Ihren Erwartungen?
 
+#### Antwort:
+##### Erwartung
+Je größer der Glättungsparameter, desto so gleichmäßiger werden die einzelenen Dokumente auf die einzelnen Topics verteilt.  
 
+##### Plot Glättungsparameter=1
+![Plot Glättungsparameter=1](./plots/barplot_alpha_1.png)
+
+##### Plot Glättungsparamter=10<sup>-18</sup>
+![Plot Glättungsparameter=10^-18](./plots/barplot_alpha_10_-18.png)
+
+##### Schlussfolgerung
+Der Plot mit dem Wert alpha=1 zeigt, dass die Dokuente gleichmäßig auf die Topics verteilt sind. Im Weiteren kann man den Plots entnehmen, dass es bei einem Glättungsparameter alpha=1 mehr Nicht-NaN-Topics gibt als bei einem Glättungsparamter alpha=10<sup>-18</sup>. Dieses Ergebnis entspricht unserer Erwartung. 
 
 ## Teil 2: Topic Modell Vergleich mit Referenz-Clustering (NHTSA)
 
