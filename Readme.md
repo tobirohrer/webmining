@@ -4,7 +4,6 @@
 
 ## Websites
 - https://t3n.de
-- https://www.heise.de
 
 ## Vorhaben
 Durchführen einer Trendanalyse auf Grund von aktuellen Artikeln von Tech-Magazinen.
