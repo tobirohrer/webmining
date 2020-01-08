@@ -17,6 +17,7 @@ Gemsim ist eine Open-Source Library für unsupervised topic modeling und natural
 
 [gensim](https://radimrehurek.com/gensim/auto_examples/index.html)
 
+Alle Aufgaben wurden im Jupyter Notebook [praktikum4_TopicModels](https://github.com/tobirohrer/webmining/blob/master/praktikum4/praktikum4_TopicModels.ipynb) bearbeitet. 
 ## Teil 1: Topic Modell Parameter und Interpretation (CommonCrawl)
 
 ### 1.1    
@@ -47,10 +48,12 @@ Die Topics 1 und 12 konnten wir nicht eindeutig zuordnen. Aus diesem Grund wurde
 ### 1.2 
 Notieren Sie sich, welches Topic in Codeblock 11 als „adult content“ identifiziert wurde. Filtern Sie für die weiteren Aufgaben die entsprechenden Records aus dem „result“ DataFrame aus, also z.B. alle Dokumente mit einer entsprechenden Topicwahrscheinlichkeit > 50%. Öffnen Sie nicht die Links zu den entsprechenden Dokumenten im Browser. Aktivieren Sie sicherheitshalber den installierten Browser-Filter.
 
+#### Antwort:
 Das Topic mit der ID=7 wurde als adult content identifiziert. 
 
 Das folgende Listing gibt die ersten fünf Dokumente aus, welche für Topic 7 eine Topicwahrscheinlichkeit > 50% aufweisen.    
 ```python
+dfnormal = dfnormal.sort_index(axis=1)
 result_new = pd.concat([result['Target-URI'], dfnormal], axis=1)
 result_new[result_new[7] > 0.5][:5]
 ```
@@ -58,7 +61,26 @@ result_new[result_new[7] > 0.5][:5]
 ### 1.3 
 Schauen Sie sich nun für einige andere Topics stichprobenartig Dokumente an. Passen diese zu den vorher von Ihnen vergebenen Topic-Überbegriffen? Warum bzw. warum nicht?
 
+#### Antwort:
+Das folgende Listing zeigt den Python-Code, welcher die ersten fünf Dokumente aus jeden Topic ausgibt. 
+```python
+def print_topics(topic_id, topic_prob):
+    print("Topic #" + str(topic_id) + ": " + topics[topic_id])
+    display(result_new[result_new[topic_id] > topic_prob][:5])
+```
+```python
+for i in range(len(topics)):
+    if (i != 7):
+        print_topics(i, 0.5)
+```
+Topic 0 (Research):   
+Dieses Topic enthält Webseiten zu Research-Themen und Job-Börsen. Aus diesem Grund könnten man das Topic auch Work nennen. 
 
+Topic 1 (Misc):   
+In diesem Topic befinden sich Links zu Universitäten, sowie zu Tech-Themen. Man könnte dieses Topic auch als Education bezeichnen.
+
+Topic 4 (Education):   
+Dieses Topic beinhaltet Webseiten aus dem Bereich Sport und Musik. 
 
 ### 1.4
 Formulieren Sie Anfragen zu bestimmten Topic-Mischungen (z.B. Topic A > 40% und Topic B > 40%). Passen die gematchten Dokumente zu Ihren Erwartungen? Warum bzw. warum nicht?
