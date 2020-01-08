@@ -23,6 +23,7 @@ Alle Aufgaben wurden im Jupyter Notebook [praktikum4_TopicModels](https://github
 ### 1.1    
 Schauen Sie sich die Topic-Wortverteilungen des erstellten Modells an (in Textform, der interaktiven Ausgabe, oder als Wordcloud). Für welche Topics können Sie intuitiv Überbegriffe bilden? Notieren Sie sich diese bzw. legen Sie eine entsprechende „lookup-tabelle“ als Datenstruktur an. Welche Topics erscheinen sinnvoll, welche nicht?
 
+#### Antwort:
 Das folgende Listing zeigt unsere Lookup-Tabelle:
 ```python
 topics = {
@@ -31,19 +32,19 @@ topics = {
     2: 'Month',
     3: 'Life',
     4: 'Education', 
-    5: 'Medicine',
-    6: 'Architect', 
+    5: 'Misc',
+    6: 'Medicine', 
     7: 'Adult', 
     8: 'Country', 
-    9: 'Education', 
+    9: 'Misc', 
     10: 'Month', 
     11: 'Technology',
     12: 'Misc',
     13: 'Government',
-    14: 'Temperature'
+    14: 'Climate'
 }
 ```
-Die Topics 1 und 12 konnten wir nicht eindeutig zuordnen. Aus diesem Grund wurden die Topics als Misc bezeichnet. 
+Die Topics 1,5,9 und 12 konnten wir nicht eindeutig zuordnen. Aus diesem Grund wurden die Topics als Misc bezeichnet. 
 
 ### 1.2 
 Notieren Sie sich, welches Topic in Codeblock 11 als „adult content“ identifiziert wurde. Filtern Sie für die weiteren Aufgaben die entsprechenden Records aus dem „result“ DataFrame aus, also z.B. alle Dokumente mit einer entsprechenden Topicwahrscheinlichkeit > 50%. Öffnen Sie nicht die Links zu den entsprechenden Dokumenten im Browser. Aktivieren Sie sicherheitshalber den installierten Browser-Filter.
@@ -85,6 +86,21 @@ Dieses Topic beinhaltet Webseiten aus dem Bereich Sport und Musik.
 ### 1.4
 Formulieren Sie Anfragen zu bestimmten Topic-Mischungen (z.B. Topic A > 40% und Topic B > 40%). Passen die gematchten Dokumente zu Ihren Erwartungen? Warum bzw. warum nicht?
 
+#### Antwort:
+Die folgenden Listings zeigen den Python-Code für die Topic-Mischungen.   
+Topic Research > 40% und Topic Education > 40%:
+```python
+print(topics[0], " AND ", topics[4])
+result_new[(result_new[0] > 0.4) &  (result_new[4] > 0.4)][:5]
+```
+Bei dieser Anfrage treffen die Ergebnisse auf die Topics zu. Im Ergebnis wird auf die Webseiten Saskatchewan Archival Information Network und indeed verwiesen. 
+
+Topic Medicine > 40% und Topic Technology > 40%:
+```python
+print(topics[6], " AND ", topics[11])
+result_new[(result_new[5] > 0.4) &  (result_new[11] > 0.4)][:5]
+```
+Bei dieser Anfrage erhält man einen Treffer zur Webseite michiganflora. Bei dieser Webseite handelt es sich um eine Seite der Universität Michigan. Auf dieser Webseite wird die Pflanze Limonium platyphyllum vorgesetellt. Zu dieser Pflanze gibt es auch medizinische Untersuchungen. 
 
 
 ### 1.5 
