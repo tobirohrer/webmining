@@ -163,10 +163,11 @@ max_p_df.head(10)
 ```
 Die Ausgabe zeigt die ersten zehn Dokumente mit den jeweiligen Topic-Wahrscheinlichkeiten.
 
-![Tab Hardclustering nhtsa](./plots/hardclustering_nhtsa.png)
+<img src="./plots/hardclustering_nhtsa.png" alt="Tab Hardclustering nhtsa" width="300"/>
 
 RAND-Metrik:   
-$ Accuracy = \frac{TP + TN}{TP+FP+FN+TN} $
+
+<a target="_blank"><img src="https://latex.codecogs.com/png.latex?\dpi{107}&space;Accuracy&space;=&space;\frac{TP&space;&plus;&space;TN}{TP&plus;FP&plus;FN&plus;TN}" title="Accuracy = \frac{TP + TN}{TP+FP+FN+TN}" /></a>
 
 Die Accuracy beträgt ca. 0,77. Die Kategorien in dem Datensatz passen gut zu den Dokumenten.
 
@@ -174,17 +175,26 @@ Die Accuracy beträgt ca. 0,77. Die Kategorien in dem Datensatz passen gut zu de
 Erstellen Sie eine Kreuztabellle, bei der eine Dimension die Topics und eine Dimension die Kategorien (COMPDESC) darstellen. In den Zellen soll gezählt werden, wie häufig im Corpus das Top-Topic eines Dokuments mit der tatsächlichen Kategorie korrespondiert. Nutzen Sie zur Visualisierung z.B. „clustermap“ aus der Python Bibliothek seaborn. Wie interpretieren Sie die Ergebnisse? Schauen Sie sich einzelne Dokumente als Repräsentanten/Beispiele interessanter Konstellationen in der Kreuztabelle an.
 
 #### Antwort:
+Im Folgenden ist die Kreuztabelle zu sehen.
 ##### Kreuztabelle
-![Tab Cross Table nhtsa](./plots/cross_table_nhtsa.png)
+<img src="./plots/cross_table_nhtsa.png" alt="Tab Cross Table nhtsa" width="600"/>   
 
+Der folgende Plot zeigt eine Heatmap der vorherigen Kreuztabelle. 
 ##### Heatmap:
-![Plot Heatmap nhtsa](./plots/heatmap_nhtsa.png)
+<img src="./plots/heatmap_nhtsa.png" alt="Plot Heatmap nhtsa" width="600"/>
 
+Der folgende Plot zeigt eine Clustermap der Kreuztabelle. 
 ##### Clustermap:
-![Plot Clustermap nhtsa](./plots/clustermap_nhtsa.png)
+<img src="./plots/clustermap_nhtsa.png" alt="Plot Clustermap nhtsa" width="600"/>
 
-Interpretation:
-TODO
+##### Interpretation:
+Die Kreuztabelle zeigt, dass die Topics 7 (Tire) und 9 (Contact) häufig der Kategorie "AIR BAGS" zugeordnet werden. Man könnte daraus schließen, dass Schadensmeldungen eines Air Bags häufig mit Reifenschäden in Zusammenhang stehen.  
+Des Weiteren konnte Topic 0 (Headlight) eindeutig der Kategorie "Exterior Lighting" zugewiesen werden. In der Heatmap ist dieses Ergebnis eindeutig abzulesen, da das Feld (0, Exterior Lighting) sehr hell eingefärbt ist.   
+Das Topic 7 (Tire) konnte eindeutig der Kategorie "WHEELS" zugeordnet werden, dies ist ebenfalls der Heatmap zu entnehmen.
+
+Abschließend ist in der Clustermap zu erkennen, welche Themen besonders stark in Zusammenhang stehen. Man erkennt, dass die Topics 3, 9, 1 und 7 einen höheren Zusammenhang untereinander haben, als zu anderen Topics. Das Gleiche gilt für die Topics 0 und 8, sowie für die Topics 5, 6, 2 und 4.    
+
+Bei den Kategorien ist zu erkennen, dass die Kategorien "AIR BAGS" und "WHEELS" zusammenhängen. Außerdem stehen die Kategorien "VISIBILITY/WIPER" und "EXTERIOR LIGHTING" in Zusammenhang. Diese beiden Cluster von Kategorien stehen zusätzlich nochmal in Zusammenhang. Hingegen bilden die Kategorien "SERVICE BRAKES" und "FUEL/PROPULSION SYSTEM" ein weiteres Cluster. 
 
 ## Teil 3: Topic Modell auf eigenen gecrawlten Texten
  
