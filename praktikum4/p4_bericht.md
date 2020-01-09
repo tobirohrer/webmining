@@ -198,3 +198,42 @@ Bei den Kategorien ist zu erkennen, dass die Kategorien "AIR BAGS" und "WHEELS" 
 
 ## Teil 3: Topic Modell auf eigenen gecrawlten Texten
  
+### Gensim
+#### Lookup Table
+TODO
+
+#### Hardclustering
+TODO
+
+#### RAND-Metrik
+TODO
+
+#### Kreuztabelle
+TODO
+
+##### Heatmap:
+TODO
+
+##### Clustermap:
+TODO
+
+---
+
+### Sklearn
+#### Lookup Table
+TODO
+
+#### Hardclustering
+TODO
+
+#### RAND-Metrik
+TODO
+
+#### Kreuztabelle
+TODO
+
+##### Heatmap:
+TODO
+
+##### Clustermap:
+TODO
