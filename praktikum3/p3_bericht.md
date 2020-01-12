@@ -173,15 +173,16 @@ Das zeichenbasierte Shingling wurde im Skript [runMinHashExample.py](https://git
 Das wortbasierte und das zeichenbasierte Shingling wurden mit unterschiedlichen Freiheitsgraden getestet. Die Tests wurden mit den Random-Seed Werten 42, 127 und 1700 durchgeführt und sind in folgender Tabelle aufgelistet. 
 
 Precision-Recall Werte für die jeweiligen Random-Seeds:
-| Shingles | Wortbasiert/ Zeichenbasiert | numHashes | 42 | 127 | 1700     
-| :-----------: |:-------------:| :-------------:| :-------------:| :-------------:| :-------------:|
-|3|Wortbasiert|2|0.67| 0.71 | 1.00 |
-|3|Wortbasiert|4|1.00| 1.00 | 0.98 |
-|6|Wortbasiert|2|0.83| 0.52 | 0.91 |
-|6|Wortbasiert|4|0.95| 1.00 | 0.96 |
-|6|Zeichenbasiert|2|0.05| 0.00 | 0.14 |
-|6|Zeichenbasiert|4|1.00| 1.00 | 0.43 |
-|12|Zeichenbasiert|2|0.83| 0.71 | 0.83 |
-|12|Zeichenbasiert|4|0.99| 1.00 | 1.00 |
+
+| Shingles  | Wortbasiert/ Zeichenbasiert  | numHashes  | 42  | 127  | 1700  |
+|---|---|---|---|---|---|
+|3|Wortbasiert|2|0.67|0.71|1.00|
+|3|Wortbasiert|4|1.00|1.00|0.98|
+|6|Wortbasiert|2|0.83|0.52|0.91|
+|6|Wortbasiert|4|0.95|1.00|0.96|
+|6|Zeichenbasiert|2|0.05|0.00|0.14|
+|6|Zeichenbasiert|4|1.00|1.00|0.43|
+|12|Zeichenbasiert|2|0.83|0.71|0.83|
+|12|Zeichenbasiert|4|0.99|1.00|1.00|
 
 Zunächst fällt auf, dass beim zeichenbasierten Shingling die Anzahl der Zeichen pro Shingling eine größere Rolle spielen als beim wortbasierten Shingling. Es wurden daher sechs und zwölf Zeichen pro Shingling gewählt. Die Anzahl der Zeichen pro Shingling beim wortbasierten Shingling wurde auf drei und sechs gesetzt, da bei dieser Anzahl bereits gute Werte für den Precision-Recall erreicht werden konnten. Außerdem ist bei beiden Verfahren anzumerken, dass bei einer Verwendung von vier Hashfunktionen der Precision-Recall deutlich besser war, als bei zwei Hashfunktionen. Im Weiteren erkennt man, dass der Precision-Recall bei zwei Hashfunktionen durch die Erhöhung der Zeichenanzahl pro Shingling deutlich ansteigt, dies ist sowohl beim wortbasierten, als auch bei zeichenbasierten Shingling zu erkennen. 
