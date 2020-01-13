@@ -131,16 +131,14 @@ create view POSTAGS_NHTSA as select TA_NORMALIZED as nor, CMPLID as id, TA_TYPE 
 Im Weiteren wurde eine SQL-Abfrage an die SQL-View gestellt, welche mehrdeutige Wörtern in einem Dokument zurückgibt. Die Wörter wurden nach ihrer Mehrdeutigkeit sortiert. 
 
 ```sql
-select NOR, ID, count(NOR) from POSTAGS_NHTSA group by NOR, ID having count(NOR) > 1
+select NOR, ID, count(NOR) from POSTAGS_NHTSA group by NOR, ID having count(NOR) > 1 order by count(NOR) desc
 ```
 
-Im Ergebnis stellte sicher heraus, dass Wörter maximal zwei POS-Tags zugeordnet wurden.    
-Beispiele hierfür sind:   
-* put (Adjektiv und Verb)
-* concrete (Nomen und Adjektiv)
-* rental (Nomen und Adjektiv)
-
-#### 2.5 Eigene sinnvolle Statistiken und Visualisierungen 
+Im Ergebnis stellte sicher heraus, dass es Wörter gibt, welchen drei unterschiedliche POS-Tags zugeordnet wurden.    
+Beispiele hierfür sind (mit Angabe der Häufigkeit):   
+* steering (Nomen (2), Adjektiv (6) und Verb (2)), CMPLID: 1353112
+* charging (Nomen (3), Adjektiv (3) und Verb (4)), CMPLID: 1277576
+* driving (Nomen (2), Adjektiv (2) und Verb (2)), CMPLID: 1347047
 
 
 ### Statistiken mit SQL und Visualisierung mit Python - T3N
