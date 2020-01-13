@@ -13,3 +13,6 @@ gensim
 fastparquet
 python-snappy
 pyarrow
+pydotplus
+keras
+tensorflow
