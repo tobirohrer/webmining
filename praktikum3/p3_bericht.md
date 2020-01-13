@@ -40,38 +40,60 @@ Hinweis: Im Bericht wurden nur die Top 5 dargestellt.
 
 ### 1.3 
 #### term frequency (tf):
-Zunächst wurde das am häufigsten vorkommende Nomen selektiert, dies konnte über folgende SQL-Abfrage realisiert werden. 
+Zunächst wurde eine SQL-View angelegt, welche die Vorkommenshäufigkeit (term frequency) von einen Term in jeweiligen Dokument beinhaltet. 
 
 ```sql
-select top 1 t1.TA_TOKEN as noun, count(*) as maxfreq from "SYSTEM"."$TA_CDESCRIND" as t1 where t1.TA_TYPE=\'noun\' group by t1.TA_TOKEN order by count(*) desc
+create view MAX_FREQ_NOUN as select CMPLID as CMPLID, TA_TOKEN as noun, count(*) as tf from "$TA_CDESCRIND" where TA_TYPE=\'noun\' group by CMPLID, TA_TOKEN order by count(*) desc
+
 ```
 
 Im Weiteren wurde über folgende SQL-Abfrage die term frequency ausgegeben.
 
 ```sql
-select top 3 t1.TA_TOKEN, (count(*)/t2.maxfreq) from "SYSTEM"."$TA_CDESCRIND" as t1, "SYSTEM"."MAX_FREQ_NOUN" as t2 where t1.TA_TYPE=\'noun\' group by t1.TA_TOKEN, t2.maxfreq order by count(*) desc
+select top 3 CMPLID, noun, tf from MAX_FREQ_NOUN
 ```
 Ergebnisse: 
 
-| Nomen  | tf         
-| :-----------: |:-------------:|
-| VEHICLE       |      1       |
-| CAR       |      0.826885       |
-| TIRE       |      0.798524       |
+| CMPILD | noun  | tf         
+| :-----------: |:-------------:|:-------------:|
+| 646431      |      TIRE       |     23     |
+| 646433      |      TIRE       |     23    |
+| 1405206       |      CAR      |     22   |
 
 #### inverse document frequency (idf):
-Die inverse document frequency konnte über folgendes SQL-Statement realisiert werden.
+Die inverse document frequency wurde mithilfe von drei Views realisiert. Im Folgenden sind die SQL-Befehle zusehen. 
 
 ```sql
-select TA_TOKEN, count_docs_term, n_total, LOG(10,(n_total/count_docs_term)) as idf from VALUES_IDF
+create view COUNT_DOCS as select count(DISTINCT cmplid) as n_total from "SYSTEM"."$TA_CDESCRIND"
+```
+```sql
+create view VALUES_DF as select TA_TOKEN as noun, count(DISTINCT CMPLID) as DF from "$TA_CDESCRIND" where TA_TYPE=\'noun\' group by TA_TOKEN
+```
+```sql
+create view VALUES_IDF as select t1.noun, ln((t2.n_total/t1.DF)) as idf from VALUES_DF as t1, COUNT_DOCS as t2 order by idf desc
+```
+
+Das folgende SQL-Statement liefert schließlich die Ausgabe zu der inverse document frequency.
+
+```sql
+select top 3 * from VALUES_IDF
 ```
 Ergebnisse:
 
-| Nomen  | idf         
+| Nomen  | idf        
 | :-----------: |:-------------:|
-| TIRE | 0.562717 |
-| VEHICLE | 0.405825 |
-| CAR | 0.576766 |
+| MILLIAMPS | 11.541007 |
+| MILLAGE | 11.541007 |
+| MILLER | 11.541007 |
+
+Die top-3 tf-idf (ntn nach der SMART Notation) Werte von Nomen im Corpus sind in folgender Tabelle zu sehen:
+
+| CMPILD | noun  | tf   |   idf   |   tfidf |
+| :-----------: |:-------------:|:-------------:|:-------------:|:-------------:|
+|    769417       |      DEFLECTORS       |       14      |   9.749248    |      136.489472     |
+|      1001131     |       PLATFORM      |      15       |   8.139810    |    122.097151       |
+|      1001132     |        PLATFORM     |      15       |    8.139810   |     122.097151       |
+
 
 ### 1.4
 Im Folgenden ist die SQL-Abfrage zu sehen, welche für den Chi2 Test benötigt wird.
