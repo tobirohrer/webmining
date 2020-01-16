@@ -33,7 +33,7 @@ topics = {
     3: 'Life',
     4: 'Education', 
     5: 'Misc',
-    6: 'Medicine', 
+    6: 'Architecture', 
     7: 'Adult', 
     8: 'Country', 
     9: 'Misc', 
@@ -52,11 +52,12 @@ Notieren Sie sich, welches Topic in Codeblock 11 als „adult content“ identif
 #### Antwort:
 Das Topic mit der ID=7 wurde als adult content identifiziert. 
 
-Das folgende Listing gibt die ersten fünf Dokumente aus, welche für Topic 7 eine Topicwahrscheinlichkeit > 50% aufweisen.    
+Das folgende Listing weist die Dokumente, welche für das Topic 7 eine Topicwahrscheinlichkeit > 50% aufweisen, einem neuen Dataframe (result_new_with_adult) zu. Anschließend werden diese Dokumente für die weiteren Aufgaben herausgefiltert. 
 ```python
 dfnormal = dfnormal.sort_index(axis=1)
 result_new = pd.concat([result['Target-URI'], dfnormal], axis=1)
-result_new[result_new[7] > 0.5][:5]
+result_new_with_adult = result_new[result_new[7] > 0.5]
+result_new = pd.concat([result_new, result_new_with_adult]).drop_duplicates(keep=False)
 ```
 
 ### 1.3 
@@ -80,8 +81,10 @@ Dieses Topic enthält Webseiten zu Research-Themen und Job-Börsen. Aus diesem G
 Topic 1 (Misc):   
 In diesem Topic befinden sich Links zu Universitäten, sowie zu Tech-Themen. Man könnte dieses Topic auch als Education bezeichnen.
 
-Topic 4 (Education):   
-Dieses Topic beinhaltet Webseiten aus dem Bereich Sport und Musik. 
+Topic 10 (Month):   
+Diese Topic beinhaltet einige Webseiten mit Datumsangaben. Beispiele hierfür sind:
+* Jönköping University (https://ju.se/en/it-helpdesk/faq---manuals.html)
+* MDCI London (http://mdciedu.com/news/british-masters-in-business-administration-mba-degree-final-applications-being-received-al-khobar-monday-16th-february-2015/) 
 
 ### 1.4
 Formulieren Sie Anfragen zu bestimmten Topic-Mischungen (z.B. Topic A > 40% und Topic B > 40%). Passen die gematchten Dokumente zu Ihren Erwartungen? Warum bzw. warum nicht?
@@ -95,12 +98,12 @@ result_new[(result_new[0] > 0.4) &  (result_new[4] > 0.4)][:5]
 ```
 Bei dieser Anfrage treffen die Ergebnisse auf die Topics zu. Im Ergebnis wird auf die Webseiten Saskatchewan Archival Information Network und indeed verwiesen. 
 
-Topic Medicine > 40% und Topic Technology > 40%:
+Topic Architecture > 40% und Topic Technology > 40%:
 ```python
 print(topics[6], " AND ", topics[11])
 result_new[(result_new[5] > 0.4) &  (result_new[11] > 0.4)][:5]
 ```
-Bei dieser Anfrage erhält man einen Treffer zur Webseite michiganflora. Bei dieser Webseite handelt es sich um eine Seite der Universität Michigan. Auf dieser Webseite wird die Pflanze Limonium platyphyllum vorgesetellt. Zu dieser Pflanze gibt es auch medizinische Untersuchungen. 
+Bei dieser Anfrage erhält man einen Treffer zur Webseite michiganflora. Bei dieser Webseite handelt es sich um eine Seite der Universität Michigan. Auf dieser Webseite wird die Pflanze Limonium platyphyllum vorgesetellt. Diese Webseite passt nicht zu den beiden Topics. 
 
 ### 1.5 
 Berechnen Sie zwei neue Modelle (auf dem Original-Corpus mit Adult-Content) mit verändertem Glättungsparameter für die Dokument-Topic Zuordnungen. Die restlichen Parameter sollen beibehalten werden. Berechnen Sie ein Modell mit Glättungsparameter=1 und ein Modell mit Glättungsparameter=10^-18. Wie sollte sich das Modell Ihrer Erwartung nach verändern? Schauen Sie sich wieder jeweils die ersten 20 Zeilen der Dokument-Topic Wahrscheinlichkeitsmatrizen an. Plotten Sie weiterhin die Häufigkeitsverteilungen der „Nicht-NaN-Topics“ pro Dokument. Was fällt Ihnen auf? Entspricht dies Ihren Erwartungen?
@@ -127,14 +130,14 @@ Machen Sie sich, ähnlich wie in Teil I, mit dem erstellten Topicmodell für den
 Das folgende Listing zeigt unsere Lookup-Tabelle:
 ```python
 topics = {
-    0: 'Headlight', 
-    1: 'Wheel',
-    2: 'Brake',
-    3: 'Recall',
-    4: 'Light', 
+    0: 'Lighting',
+    1: 'Wheels',
+    2: 'Brakes',
+    3: 'Air Bags',
+    4: 'Trailer', 
     5: 'Engine',
-    6: 'Fuel', 
-    7: 'Tire', 
+    6: 'Fuel',
+    7: 'Tire',
     8: 'Windshield', 
     9: 'Contact'
 }
@@ -146,7 +149,7 @@ Die meisten Topics können eindeutig bestimmt werden. Beim dritten und vierten T
 Überführen Sie das Soft-Clustering in ein Hard-Clustering, indem Sie einen Vektor erstellen, der pro Dokument das Topic mit der höchsten Wahrscheinlichkeit enthält. Die NHTSA-Kategorien (COMPDESCR) finden Sie bereits im Vektor docCats. Berechnen Sie auf dieser Basis die RAND-Metrik zum Vergleich von Clusterings und interpretieren Sie diese soweit möglich.
 
 #### Antwort:
-Wir haben das Soft-Clustering in ein Hard-Clustering. Das folgende Listing zeigt den Python-Code:
+Wir haben das Soft-Clustering in ein Hard-Clustering überführt. Das folgende Listing zeigt den Python-Code:
 
 ```python
 best_topic_document = []
@@ -189,7 +192,7 @@ Der folgende Plot zeigt eine Clustermap der Kreuztabelle.
 
 ##### Interpretation:
 Die Kreuztabelle zeigt, dass die Topics 7 (Tire) und 9 (Contact) häufig der Kategorie "AIR BAGS" zugeordnet werden. Man könnte daraus schließen, dass Schadensmeldungen eines Air Bags häufig mit Reifenschäden in Zusammenhang stehen.  
-Des Weiteren konnte Topic 0 (Headlight) eindeutig der Kategorie "Exterior Lighting" zugewiesen werden. In der Heatmap ist dieses Ergebnis eindeutig abzulesen, da das Feld (0, Exterior Lighting) sehr hell eingefärbt ist.   
+Des Weiteren konnte Topic 0 (Lighting) eindeutig der Kategorie "Exterior Lighting" zugewiesen werden. In der Heatmap ist dieses Ergebnis eindeutig abzulesen, da das Feld (0, Exterior Lighting) sehr hell eingefärbt ist.   
 Das Topic 7 (Tire) konnte eindeutig der Kategorie "WHEELS" zugeordnet werden, dies ist ebenfalls der Heatmap zu entnehmen.
 
 Abschließend ist in der Clustermap zu erkennen, welche Themen besonders stark in Zusammenhang stehen. Man erkennt, dass die Topics 3, 9, 1 und 7 einen höheren Zusammenhang untereinander haben, als zu anderen Topics. Das Gleiche gilt für die Topics 0 und 8, sowie für die Topics 5, 6, 2 und 4.    
@@ -200,40 +203,63 @@ Bei den Kategorien ist zu erkennen, dass die Kategorien "AIR BAGS" und "WHEELS" 
  
 ### Gensim
 #### Lookup Table
-TODO
+Das folgende Listing zeigt unsere Lookup-Tabelle:
+```python
+topics = {
+    0: 'Software & Infrastruktur', 
+    1: 'Startups',
+    2: 'E-Commerce',
+    3: 'Digitale Wirtschaft',
+    4: 'Entwicklung & Design', 
+    5: 'Mobilität',
+    6: 'Gadgets & Lifestyle', 
+    7: 'Karriere', 
+    8: 'Digitale Gesellschaft', 
+    9: 'Marketing'
+}
+```
+Die Topics konnten eindeutig bestimmt werden.
 
 #### Hardclustering
-TODO
+Wir haben das Soft-Clustering in ein Hard-Clustering überführt. Das folgende Listing zeigt den Python-Code:
+
+```python
+best_topic_document = []
+
+for i in range(0, dft3n.shape[0], 1):
+    topic_p = dft3n.to_numpy()[i].tolist()
+    max_value = np.nanmax(topic_p)
+    max_index = topic_p.index(max_value)
+    
+    best_topic_document.append((i,max_index,max_value) )
+    
+max_p_df = pd.DataFrame(best_topic_document, columns=['Document', 'Topic', 'Probability (P)'])
+max_p_df.head(10))
+```
+Die Ausgabe zeigt die ersten zehn Dokumente mit den jeweiligen Topic-Wahrscheinlichkeiten.
+
+<img src="./plots/hardclustering_t3n.png" alt="Tab Hardclustering t3n" width="300"/>
 
 #### RAND-Metrik
-TODO
+ 
+<a target="_blank"><img src="https://latex.codecogs.com/png.latex?\dpi{107}&space;Accuracy&space;=&space;\frac{TP&space;&plus;&space;TN}{TP&plus;FP&plus;FN&plus;TN}" title="Accuracy = \frac{TP + TN}{TP+FP+FN+TN}" /></a>
+
+Die Accuracy beträgt ca. 0,76. Die Kategorien in dem Datensatz passen gut zu den Dokumenten.
 
 #### Kreuztabelle
-TODO
+Im Folgenden ist die Kreuztabelle zu sehen.
+<img src="./plots/cross_table_t3n.png" alt="Tab Cross Table nhtsa" width="600"/>   
 
-##### Heatmap:
-TODO
+Die Kreuztablle veranschaulicht, dass die Kategorien Gadgets & Lifestyle und Software & Infrastruktur in allen Topics Repräsentationen haben. Die Kategorie Gadgets & Lifestyle sollte man dem Topic 6 zuordnen, da der Wert hier mit 103 am größten ist. Das Kategorie Software & Infrastruktur korresponiert mit Topic 0, da hier der Wert 57 aus der Kreuztabelle abzulesen ist. 
 
-##### Clustermap:
-TODO
+#### Heatmap:
+Der folgende Plot zeigt eine Heatmap der vorherigen Kreuztabelle. 
+<img src="./plots/heatmap_t3n.png" alt="Plot Heatmap nhtsa" width="600"/>
 
----
+In der Heatmap sieht man nochmal, dass die Kategorie Gadgets & Lifestyle thematisch zu Topic 6 gehört. Außerdem erkennt man, dass die Kategorie Mobilität durch Topic 5 abgebildet wird. 
 
-### Sklearn
-#### Lookup Table
-TODO
+#### Clustermap:
+Der folgende Plot zeigt eine Clustermap der Kreuztabelle. 
+<img src="./plots/clustermap_t3n.png" alt="Plot Clustermap nhtsa" width="600"/>
 
-#### Hardclustering
-TODO
-
-#### RAND-Metrik
-TODO
-
-#### Kreuztabelle
-TODO
-
-##### Heatmap:
-TODO
-
-##### Clustermap:
-TODO
+Die Clustermap zeigt neben den Häufigkeitsangaben aus der Kreuztabelle auch noch zusammenhängende Cluster an. In diesem Zusammenhang ist festzuhalten, dass die Kategorien Gadgets & Lifestyle und Software & Infrastruktur stärker in Zusammenhang stehen. Außerdem sieht man, dass die Kategorien Karriere und Marketing ähnliche Themen beinhalten. 
