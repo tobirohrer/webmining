@@ -3,6 +3,13 @@
 ## Allgemein
 * Link zum GitHub Repo: [https://github.com/tobirohrer/webmining](https://github.com/tobirohrer/webmining)
 
+## Vorbereitung
+### Anfragevektoren T3N
+Anfrage {'APPLE': 3, 'iPhone': 1, 'TV':2, 'FACEBOOK':4}
+
+### Anfragevektoren NHTSA
+Anfrage {'AIR': 2, 'BAG': 2, 'DEPLOYMENT':2, 'ACCIDENT':2}
+
 ## Teil 1: Fortgeschrittenes Reporting und Dokumentähnlichkeit auf zerlegten Texten (SQL)
 Die Aufgaben wurden im Jupyter-Notebook [praktikum3](https://github.com/tobirohrer/webmining/blob/master/praktikum3/praktikum3.ipynb) umgesetzt.
 ### 1.1    
@@ -349,6 +356,19 @@ Die jeweils ähnlichsten Dokumente zu dem Dokument mit der ID 54ff8c69-007f-49a8
 
 ## Teil 2: Evaluation
 Die Aufgaben wurden im Jupyter-Notebook [praktikum3](https://github.com/tobirohrer/webmining/blob/master/praktikum3/praktikum3.ipynb) umgesetzt.
+
+## Precision Recall (T3N)
+Für den Precision Recall Plot wurde der Anfragevektor {'APPLE': 3, 'iPhone': 1, 'TV':2, 'FACEBOOK':4} verwendet. Als relevante Dokumente wurden alle Dokumente aus der Kategorie 'Gadgets & Lifestyle' betrachtet. Der Plot zeigt die Top 200 Dokumente.
+
+![Plot Precision Recall T3N](./plots/precision_recall_T3N.png)
+
+## Precision Recall (NHTSA)
+Für den Precision Recall Plot wurde der Anfragevektor {'AIR': 2, 'BAG': 2, 'DEPLOYMENT':2, 'ACCIDENT':2} verwendet. Als relevante Dokumente wurden alle Dokumente aus den Kategorien 'AIR BAGS', 'TIRES' und 'AIR BAGS:FRONTAL' betrachtet. Der Plot zeigt die Top 200 Dokumente.
+
+![Plot Precision Recall T3N](./plots/precision_recall_NHTSA.png)
+
+## Interpretation
+Je mehr gefundene Dokumente relevant sind, desto größer ist der Recall. Die Precision ist hoch, wenn fast alle gefundenen Dokumente relevant sind. Die Precision sinkt, da die Relevanz der gefundenen Dokumente immer weiter sinkt. 
 
 ## Teil 3: Duplikaterkennung mit Shingling und MinHashing
 
