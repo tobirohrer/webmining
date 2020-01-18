@@ -44,7 +44,7 @@ topics = {
     14: 'Climate'
 }
 ```
-Die Topics 1,5,9 und 12 konnten wir nicht eindeutig zuordnen. Aus diesem Grund wurden die Topics als Misc bezeichnet. 
+Die Topics 1, 5, 9 und 12 konnten wir nicht eindeutig zuordnen. Aus diesem Grund wurden die Topics als Misc bezeichnet. 
 
 ### 1.2 
 Notieren Sie sich, welches Topic in Codeblock 11 als „adult content“ identifiziert wurde. Filtern Sie für die weiteren Aufgaben die entsprechenden Records aus dem „result“ DataFrame aus, also z.B. alle Dokumente mit einer entsprechenden Topicwahrscheinlichkeit > 50%. Öffnen Sie nicht die Links zu den entsprechenden Dokumenten im Browser. Aktivieren Sie sicherheitshalber den installierten Browser-Filter.
@@ -52,7 +52,7 @@ Notieren Sie sich, welches Topic in Codeblock 11 als „adult content“ identif
 #### Antwort:
 Das Topic mit der ID=7 wurde als adult content identifiziert. 
 
-Das folgende Listing weist die Dokumente, welche für das Topic 7 eine Topicwahrscheinlichkeit > 50% aufweisen, einem neuen Dataframe (result_new_with_adult) zu. Anschließend werden diese Dokumente für die weiteren Aufgaben herausgefiltert. 
+Das folgende Listing weist den Dokumenten, welche für das Topic 7 eine Topicwahrscheinlichkeit > 50% aufweisen, einen neuen Dataframe (result_new_with_adult) zu. Anschließend werden diese Dokumente für die weiteren Aufgaben herausgefiltert. 
 ```python
 dfnormal = dfnormal.sort_index(axis=1)
 result_new = pd.concat([result['Target-URI'], dfnormal], axis=1)
@@ -64,7 +64,7 @@ result_new = pd.concat([result_new, result_new_with_adult]).drop_duplicates(keep
 Schauen Sie sich nun für einige andere Topics stichprobenartig Dokumente an. Passen diese zu den vorher von Ihnen vergebenen Topic-Überbegriffen? Warum bzw. warum nicht?
 
 #### Antwort:
-Das folgende Listing zeigt den Python-Code, welcher die ersten fünf Dokumente aus jeden Topic ausgibt. 
+Das folgende Listing zeigt den Python-Code, welcher die ersten fünf Dokumente aus jedem Topic ausgibt. 
 ```python
 def print_topics(topic_id, topic_prob):
     print("Topic #" + str(topic_id) + ": " + topics[topic_id])
@@ -76,7 +76,7 @@ for i in range(len(topics)):
         print_topics(i, 0.5)
 ```
 Topic 0 (Research):   
-Dieses Topic enthält Webseiten zu Research-Themen und Job-Börsen. Aus diesem Grund könnten man das Topic auch Work nennen. 
+Dieses Topic enthält Webseiten zu Research-Themen und Job-Börsen. Aus diesem Grund könnte man das Topic auch Work nennen. 
 
 Topic 1 (Misc):   
 In diesem Topic befinden sich Links zu Universitäten, sowie zu Tech-Themen. Man könnte dieses Topic auch als Education bezeichnen.
@@ -103,14 +103,14 @@ Topic Architecture > 40% und Topic Technology > 40%:
 print(topics[6], " AND ", topics[11])
 result_new[(result_new[5] > 0.4) &  (result_new[11] > 0.4)][:5]
 ```
-Bei dieser Anfrage erhält man einen Treffer zur Webseite michiganflora. Bei dieser Webseite handelt es sich um eine Seite der Universität Michigan. Auf dieser Webseite wird die Pflanze Limonium platyphyllum vorgesetellt. Diese Webseite passt nicht zu den beiden Topics. 
+Bei dieser Anfrage erhält man einen Treffer zur Webseite michiganflora. Bei dieser Webseite handelt es sich um eine Seite der Universität Michigan. Auf dieser Webseite wird die Pflanze Limonium platyphyllum vorgestellt. Diese Webseite passt nicht zu den beiden Topics. 
 
 ### 1.5 
-Berechnen Sie zwei neue Modelle (auf dem Original-Corpus mit Adult-Content) mit verändertem Glättungsparameter für die Dokument-Topic Zuordnungen. Die restlichen Parameter sollen beibehalten werden. Berechnen Sie ein Modell mit Glättungsparameter=1 und ein Modell mit Glättungsparameter=10^-18. Wie sollte sich das Modell Ihrer Erwartung nach verändern? Schauen Sie sich wieder jeweils die ersten 20 Zeilen der Dokument-Topic Wahrscheinlichkeitsmatrizen an. Plotten Sie weiterhin die Häufigkeitsverteilungen der „Nicht-NaN-Topics“ pro Dokument. Was fällt Ihnen auf? Entspricht dies Ihren Erwartungen?
+Berechnen Sie zwei neue Modelle (auf dem Original-Corpus mit Adult-Content) mit verändertem Glättungsparameter für die Dokument-Topic Zuordnungen. Die restlichen Parameter sollen beibehalten werden. Berechnen Sie ein Modell mit Glättungsparameter=1 und ein Modell mit Glättungsparameter=10<sup>-18</sup>. Wie sollte sich das Modell Ihrer Erwartung nach verändern? Schauen Sie sich wieder jeweils die ersten 20 Zeilen der Dokument-Topic Wahrscheinlichkeitsmatrizen an. Plotten Sie weiterhin die Häufigkeitsverteilungen der „Nicht-NaN-Topics“ pro Dokument. Was fällt Ihnen auf? Entspricht dies Ihren Erwartungen?
 
 #### Antwort:
 ##### Erwartung
-Je größer der Glättungsparameter, desto so gleichmäßiger werden die einzelenen Dokumente auf die einzelnen Topics verteilt.  
+Je größer der Glättungsparameter, desto gleichmäßiger werden die einzelenen Dokumente auf die einzelnen Topics verteilt.  
 
 ##### Plot Glättungsparameter=1
 ![Plot Glättungsparameter=1](./plots/barplot_alpha_1.png)
@@ -200,8 +200,7 @@ Abschließend ist in der Clustermap zu erkennen, welche Themen besonders stark i
 Bei den Kategorien ist zu erkennen, dass die Kategorien "AIR BAGS" und "WHEELS" zusammenhängen. Außerdem stehen die Kategorien "VISIBILITY/WIPER" und "EXTERIOR LIGHTING" in Zusammenhang. Diese beiden Cluster von Kategorien stehen zusätzlich nochmal in Zusammenhang. Hingegen bilden die Kategorien "SERVICE BRAKES" und "FUEL/PROPULSION SYSTEM" ein weiteres Cluster. 
 
 ## Teil 3: Topic Modell auf eigenen gecrawlten Texten
- 
-### Gensim
+
 #### Lookup Table
 Das folgende Listing zeigt unsere Lookup-Tabelle:
 ```python
@@ -256,7 +255,13 @@ Die Kreuztablle veranschaulicht, dass die Kategorien Gadgets & Lifestyle und Sof
 Der folgende Plot zeigt eine Heatmap der vorherigen Kreuztabelle. 
 <img src="./plots/heatmap_t3n.png" alt="Plot Heatmap nhtsa" width="600"/>
 
-In der Heatmap sieht man nochmal, dass die Kategorie Gadgets & Lifestyle thematisch zu Topic 6 gehört. Außerdem erkennt man, dass die Kategorie Mobilität durch Topic 5 abgebildet wird. 
+In der Heatmap sieht man nochmal, dass die Kategorie Gadgets & Lifestyle thematisch zu Topic 6 gehört. Außerdem erkennt man, dass die Kategorie Mobilität durch Topic 5 abgebildet wird.   
+
+Im Weiteren ist in der nachfolgenden Visualisierung ebenfalls zu erkennen, dass die Kategorie Mobilität durch Topic 5 (in der Visualisierung Nummer 6) abgebildet wird. 
+
+<img src="./plots/vis_term_frequency.png" alt="Plot term frequency" width="800"/>
+
+In diesem Topic kommen sehr häufig die Wörter Telsa, Elektroautos und Uber vor. Außerdem kommt der Name Elon Musk vor. Diese Wörter zeigen, dass es sich eindeutig um die Kategorie Mobilität handelt. 
 
 #### Clustermap:
 Der folgende Plot zeigt eine Clustermap der Kreuztabelle. 
