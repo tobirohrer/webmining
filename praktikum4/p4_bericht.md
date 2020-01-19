@@ -10,7 +10,7 @@ Der Common Crawl Korpus enthält Petabytes von Daten, welche in den letzten 7 Ja
 Spaltennamen des untersuchten Datensatzes:    
 'index', 'Target-URI', 'Date', 'IP-Address', 'Identified-Payload-Type', 'Payload', 'MetaData', 'Plaintext', 'Guessed-Language'
 
-[Common Crawl Datensatz](https://github.com/tobirohrer/webmining)
+[Common Crawl Datensatz](http://commoncrawl.org)
 
 ### Python-Bibliothek Gensim
 Gemsim ist eine Open-Source Library für unsupervised topic modeling und natural language processing, wobei aktuelle statistische ML-Algorithmen verwendet werden. 
