@@ -5,7 +5,7 @@
 
 ## Vorbereitung
 ### Common Crawl Datensatz
-Der Common Crawl Korpus enthält Petabytes von Daten, welche in den letzten 7 Jahren gesammelt wurden. Es enthält rohe Webseitendaten, extrahierte Metadaten und Textextraktionen. Der Common Crawl Datensatz ist in Amazon S3 gespeichert und ist Teil des Amazon Public Datasets Programs. Die öffentlichen Datensätze können kostenlos heruntergeladen werden.    
+Der Common Crawl Korpus enthält Petabytes von Daten, welche in den letzten 7 Jahren gesammelt wurden. Es enthält rohe Webseitendaten, extrahierte Metadaten und Textextraktionen. Der Common Crawl Datensatz ist in Amazon S3 gespeichert und ist Teil des Amazon Public Datasets Programs. Die öffentlichen Datensätze können kostenlos heruntergeladen werden. In dieser Ausarbeitung wurde eine Stichprobe des Common Crawl Datensatzes betrachtet. 
 
 Spaltennamen des untersuchten Datensatzes:    
 'index', 'Target-URI', 'Date', 'IP-Address', 'Identified-Payload-Type', 'Payload', 'MetaData', 'Plaintext', 'Guessed-Language'
@@ -191,7 +191,7 @@ Der folgende Plot zeigt eine Clustermap der Kreuztabelle.
 <img src="./plots/clustermap_nhtsa.png" alt="Plot Clustermap nhtsa" width="600"/>
 
 ##### Interpretation:
-Die Kreuztabelle zeigt, dass die Topics 7 (Tire) und 9 (Contact) häufig der Kategorie "AIR BAGS" zugeordnet werden. Man könnte daraus schließen, dass Schadensmeldungen eines Air Bags häufig mit Reifenschäden in Zusammenhang stehen.  
+Die Kreuztabelle zeigt, dass die Topics 7 (Tire) und 9 (Contact) häufig der Kategorie "AIR BAGS" zugeordnet werden.   
 Des Weiteren konnte Topic 0 (Lighting) eindeutig der Kategorie "Exterior Lighting" zugewiesen werden. In der Heatmap ist dieses Ergebnis eindeutig abzulesen, da das Feld (0, Exterior Lighting) sehr hell eingefärbt ist.   
 Das Topic 7 (Tire) konnte eindeutig der Kategorie "WHEELS" zugeordnet werden, dies ist ebenfalls der Heatmap zu entnehmen.
 
