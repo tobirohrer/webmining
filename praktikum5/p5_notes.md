@@ -35,7 +35,13 @@ Die relevantesten Features (Wörter) anhand des Chi^2-Wertes sind:
 Prüfen und begründen Sie, ob „accuracy“ ein sinnvolles Gütemaß für einen Klassifikator auf diesem Datensatz ist.
 
 #### Antwort:
+Plot:   
+<img src="./plots/accuracy.png" alt="Tab Cross Table nhtsa" width="400"/> 
 
+Formel:   
+<a target="_blank"><img src="https://latex.codecogs.com/png.latex?\dpi{107}&space;Accuracy&space;=&space;\frac{TP&space;&plus;&space;TN}{TP&plus;FP&plus;FN&plus;TN}" title="Accuracy = \frac{TP + TN}{TP+FP+FN+TN}" /></a>   
+
+Der Plot zeigt, dass die beiden Klassen (0 und 1) die gleiche Anzahl von Review-Texten enthalten. Die Fehlermetrik Accuracy kann vor allem auf balancierten Datensätzen aussagekräftig eingesetzt werden, dies trifft bei diesem Datensatz zu.
 
 ### 4. Aufgabe
 
