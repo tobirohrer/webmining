@@ -247,13 +247,13 @@ Die Accuracy beträgt ca. 0,76. Die Kategorien in dem Datensatz passen gut zu de
 
 #### Kreuztabelle
 Im Folgenden ist die Kreuztabelle zu sehen.
-<img src="./plots/cross_table_t3n.png" alt="Tab Cross Table nhtsa" width="600"/>   
+<img src="./plots/cross_table_t3n.png" alt="Tab Cross Table t3n" width="600"/>   
 
 Die Kreuztablle veranschaulicht, dass die Kategorien Gadgets & Lifestyle und Software & Infrastruktur in allen Topics Repräsentationen haben. Die Kategorie Gadgets & Lifestyle sollte man dem Topic 6 zuordnen, da der Wert hier mit 103 am größten ist. Das Kategorie Software & Infrastruktur korresponiert mit Topic 0, da hier der Wert 57 aus der Kreuztabelle abzulesen ist. 
 
 #### Heatmap:
 Der folgende Plot zeigt eine Heatmap der vorherigen Kreuztabelle. 
-<img src="./plots/heatmap_t3n.png" alt="Plot Heatmap nhtsa" width="600"/>
+<img src="./plots/heatmap_t3n.png" alt="Plot Heatmap t3n" width="600"/>
 
 In der Heatmap sieht man nochmal, dass die Kategorie Gadgets & Lifestyle thematisch zu Topic 6 gehört. Außerdem erkennt man, dass die Kategorie Mobilität durch Topic 5 abgebildet wird.   
 
@@ -265,6 +265,6 @@ In diesem Topic kommen sehr häufig die Wörter Telsa, Elektroautos und Uber vor
 
 #### Clustermap:
 Der folgende Plot zeigt eine Clustermap der Kreuztabelle. 
-<img src="./plots/clustermap_t3n.png" alt="Plot Clustermap nhtsa" width="600"/>
+<img src="./plots/clustermap_t3n.png" alt="Plot Clustermap t3n" width="600"/>
 
 Die Clustermap zeigt neben den Häufigkeitsangaben aus der Kreuztabelle auch noch zusammenhängende Cluster an. In diesem Zusammenhang ist festzuhalten, dass die Kategorien Gadgets & Lifestyle und Software & Infrastruktur stärker in Zusammenhang stehen. Außerdem sieht man, dass die Kategorien Karriere und Marketing ähnliche Themen beinhalten. 
