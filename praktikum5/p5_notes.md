@@ -36,7 +36,7 @@ Prüfen und begründen Sie, ob „accuracy“ ein sinnvolles Gütemaß für eine
 
 #### Antwort:
 Plot:   
-<img src="./plots/accuracy.png" alt="Tab Cross Table nhtsa" width="400"/> 
+<img src="./plots/accuracy.png" alt="accuracy" width="400"/> 
 
 Formel:   
 <a target="_blank"><img src="https://latex.codecogs.com/png.latex?\dpi{107}&space;Accuracy&space;=&space;\frac{TP&space;&plus;&space;TN}{TP&plus;FP&plus;FN&plus;TN}" title="Accuracy = \frac{TP + TN}{TP+FP+FN+TN}" /></a>   
@@ -79,4 +79,10 @@ Ein Long Short Term Memory (LSTM) ist grundsätzlich aufgebaut wie ein Rekurrent
 Wie interpretieren Sie die Ergebnisse der „einfacheren“ Klassifikationsmodelle auf den Testdaten bzw. was fällt Ihnen auf? Inwiefern deckt sich die Wichtigkeit der Features mit der, die Sie in Aufgabe (2) ermittelt haben?
 
 #### Antwort:
+Log. Regression Report:   
+<img src="./plots/log_regression_report.png" alt="log_regression_report" width="400"/> 
+
+Decision Tree Report:   
+<img src="./plots/decision_tree_report.png" alt="decision_tree_report" width="400"/> 
+
 Man erkennt, dass die logistische Regression bessere Ergebnisse als der Decision Tree liefert. Die logistische Regression erreicht eine Accuracy von ca. 88,59 %. Hingegen erreicht der Decision Tree nur eine Accuracy von ca. 69,13 %. Die Wichtigkeit der Features decken sich größtenteils mit Aufgabe 2 (Chi2-Test). 
