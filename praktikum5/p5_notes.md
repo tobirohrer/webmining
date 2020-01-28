@@ -79,4 +79,4 @@ Ein Long Short Term Memory (LSTM) ist grundsätzlich aufgebaut wie ein Rekurrent
 Wie interpretieren Sie die Ergebnisse der „einfacheren“ Klassifikationsmodelle auf den Testdaten bzw. was fällt Ihnen auf? Inwiefern deckt sich die Wichtigkeit der Features mit der, die Sie in Aufgabe (2) ermittelt haben?
 
 #### Antwort:
-
+Man erkennt, dass die logistische Regression bessere Ergebnisse als der Decision Tree liefert. Die logistische Regression erreicht eine Accuracy von ca. 88,59 %. Hingegen erreicht der Decision Tree nur eine Accuracy von ca. 69,13 %. Die Wichtigkeit der Features decken sich größtenteils mit Aufgabe 2 (Chi2-Test). 
