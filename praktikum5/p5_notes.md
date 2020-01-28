@@ -73,6 +73,7 @@ Die vorgelernten Glove-Embeedings verschlechten die Performance-Kurven, da die K
 Wie interpretieren Sie die Performance-Kurven und Ergebnisse auf den Testdaten zum LSTM bzw. was fällt Ihnen auf?
 
 #### Antwort:
+Ein Long Short Term Memory (LSTM) ist grundsätzlich aufgebaut wie ein Rekurrentes Neuronales Netz (RNN). Zusätzlich wird noch ein extra Memory-Strang mitgeführt, welchem explizit Informationen innerhalb der Zelle entzogen bzw. hinzugefügt werden. Die Accuracy der Trainingsdaten steigt annäherend mit einer Frequenz log(x). Das LSTM ist stabiler als das RNN, da die Accuracy auf den Validierungsdaten deutlich besser ist. 
 
 ### 8. Aufgabe
 Wie interpretieren Sie die Ergebnisse der „einfacheren“ Klassifikationsmodelle auf den Testdaten bzw. was fällt Ihnen auf? Inwiefern deckt sich die Wichtigkeit der Features mit der, die Sie in Aufgabe (2) ermittelt haben?
