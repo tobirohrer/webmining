@@ -67,7 +67,7 @@ Das gezeigte Review ist ein negatives Review, allerdings stuft das RNN es als po
 Optional (nur wenn Sie gut in der Zeit liegen und fit in der Materie sind!): Wie interpretieren Sie die Performance-Kurven und Ergebnisse auf den Testdaten zum RNN mit vorgelernten Glove-Embedding bzw. was fällt Ihnen auf?
 
 #### Antwort:
-
+Die vorgelernten Glove-Embeedings verschlechten die Performance-Kurven, da die Kantengewichtungen nicht unserem Anwendungsfall entsprechen.
 
 ### 7. Aufgabe
 Wie interpretieren Sie die Performance-Kurven und Ergebnisse auf den Testdaten zum LSTM bzw. was fällt Ihnen auf?
