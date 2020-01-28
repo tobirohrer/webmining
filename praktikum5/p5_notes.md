@@ -53,11 +53,21 @@ Es ist zu erkennen, dass das RNN auf den Trainingsdaten eine deutlich bessere Pe
 Schauen Sie sich einige der "drastischsten" FPs und FNs an (hoher Score und Label=1 oder niedriger Score und Label=0). Können Sie erahnen, was das Modell ggf. verwirrt hat?
 
 #### Antwort:
+Beispiel False Negative:   
+"? i was very disappointed when this show was canceled although i can not vote i live on the island of i sat down to see the show on ? and was very surprised that it didn't aired the next day i read on the internet that it was canceled br br it's true not every one was as much talented as the other but there were very talented people singing br br i find it very sad for them br br that they worked so hard and there dreams came ? down br br its a pity br br"   
+
+Das gezeigte Review ist ein positives Review, allerdings stuft das RNN es als negatives Review ein. Ein Grund hierfür sind Wörter wie "very disappointed" oder "very sad".
+
+Beispiel False Positive:    
+"? this movie made me think of how i could write something about it without personally ? the director and all the actors who as an australian i am proud of for actually getting out there and making a film br br but the movie itself let me tell you a story br br found this dvd in my local rental shop yesterday and had vague ? of the reviews at the time of cinema release here so i thought i would give it a go br br for some reason i decided to watch the ? ? before i watched the actual movie not something that i usually do turned the ? ? off halfway through as i'd had enough cringing at the ? we so wonderful for putting together such a hard hitting film with such a raw ? attitude br br the movie ugh full of clichés and pathetic character development the actors well done guys you are ? and i applaud you and just like a team is only as good as the coach that directs them you unfortunately did not have a great script to work with br br i felt that the movie actually so many of the subjects that it seemed to want to cover i have seen many reviews here that refer to it as nothing more than a soap agreed br br finally and forgive me if i don't phrase this correctly i was extremely disappointed that there were no optimistic overtones at all yes we all know that life is full of hard stuff and yes we know that things such as incest do occur but i really find it hard to applaud a movie that has not one piece of joy in it i believe that a director has a responsibility to put it in there somewhere otherwise the movie is all about them and their feelings they have created it for themselves not for an audience br br which i think is the basis of why this movie isn't so great the special features mention that the director wrote the screenplay in a ? hour sitting the day after he himself tried to end his own life well it may have been ? for him to do this however the movie ? of self ? when you know the story behind why it was written i feel horrid i'm going to write a movie about feeling horrid note i have read the interview with andrew urban and understand why needed to write something to help him through his own issues but i believe there is a line in film that cannot be crossed the line of making a movie purely for your own emotional needs and i feel that this is what has unintentionally happened here br br by his own admission the director had no technical experience at all and sadly this makes the movie come off looking like nothing more than a year twelve media project"   
+
+Das gezeigte Review ist ein negatives Review, allerdings stuft das RNN es als positives Review ein. Ein Grund hierfür sind Wörter wie "proud of" oder "so wonderful".
 
 ### 6. Aufgabe
 Optional (nur wenn Sie gut in der Zeit liegen und fit in der Materie sind!): Wie interpretieren Sie die Performance-Kurven und Ergebnisse auf den Testdaten zum RNN mit vorgelernten Glove-Embedding bzw. was fällt Ihnen auf?
 
 #### Antwort:
+
 
 ### 7. Aufgabe
 Wie interpretieren Sie die Performance-Kurven und Ergebnisse auf den Testdaten zum LSTM bzw. was fällt Ihnen auf?
