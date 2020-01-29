@@ -47,7 +47,7 @@ Der Plot zeigt, dass die beiden Klassen (0 und 1) die gleiche Anzahl von Review-
 Wie interpretieren Sie die Performance-Kurven und Ergebnisse auf den Testdaten zum RNN bzw. was fällt Ihnen auf?
 
 #### Antwort:
-Es ist zu erkennen, dass das RNN auf den Trainingsdaten eine deutlich bessere Performance hat als auf den Validierungsdaten. Dieses Ergebnis zeigt, dass bei diesem RNN ein Overfitting vorliegt. Das Overfitting steigt mit steigender Epochengröße an. Die Verteilung der Trainings- und der Validierungsdaten scheint sich zu unterscheiden.
+Es ist zu erkennen, dass das RNN auf den Trainingsdaten eine deutlich bessere Performance hat, als auf den Validierungsdaten. Dieses Ergebnis zeigt, dass bei diesem RNN ein Overfitting vorliegen könnte. Die Verteilung der Trainings- und der Validierungsdaten scheint sich zu unterscheiden. Es ist allerdings auch anzumerken, dass das RNN bei höheren Epochen wieder besser auf den Validierungsdaten funktionieren könnte.
 
 ### 5. Aufgabe
 Schauen Sie sich einige der "drastischsten" FPs und FNs an (hoher Score und Label=1 oder niedriger Score und Label=0). Können Sie erahnen, was das Modell ggf. verwirrt hat?
@@ -67,7 +67,7 @@ Das gezeigte Review ist ein negatives Review, allerdings stuft das RNN es als po
 Optional (nur wenn Sie gut in der Zeit liegen und fit in der Materie sind!): Wie interpretieren Sie die Performance-Kurven und Ergebnisse auf den Testdaten zum RNN mit vorgelernten Glove-Embedding bzw. was fällt Ihnen auf?
 
 #### Antwort:
-Die vorgelernten Glove-Embeedings verschlechten die Performance-Kurven, da die Kantengewichtungen nicht unserem Anwendungsfall entsprechen.
+Die vorgelernten Glove-Embeedings verschlechtern die Performance-Kurven, da die Kantengewichtungen nicht unserem Anwendungsfall entsprechen. Des Weiteren sieht das Modell wie ein Random-Modell aus.
 
 ### 7. Aufgabe
 Wie interpretieren Sie die Performance-Kurven und Ergebnisse auf den Testdaten zum LSTM bzw. was fällt Ihnen auf?
